@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "a3d009af-adc8-4c0b-940b-72a557bd2632",
   "createdAt": "2026-06-15T12:21:07.741Z",
-  "updatedAt": "2026-06-15T13:04:36.024Z",
+  "updatedAt": "2026-06-15T13:09:03.114Z",
   "request": {
     "title": "packages/crm を新設し、Customer 集約と CustomerRepository port（＋ in-memory 実装）を確立する",
     "type": "new-feature",
@@ -12,13 +12,13 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "conformance",
+  "step": "adr-gen",
   "status": "running",
   "branch": "feat/crm-a3d009af",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 49,
+    "historyCount": 58,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
@@ -26,9 +26,10 @@
       "spec-fixer": 1,
       "test-case-gen": 1,
       "implementer": 1,
-      "verification": 1,
+      "verification": 2,
       "code-review": 2,
-      "code-fixer": 2
+      "code-fixer": 2,
+      "conformance": 1
     }
   }
 }
