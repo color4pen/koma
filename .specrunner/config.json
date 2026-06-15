@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "verification": {
+    "commands": [
+      { "name": "typecheck", "run": "pnpm -r --if-present run check-types" },
+      { "name": "test", "run": "pnpm -r --if-present run test" },
+      { "name": "lint", "run": "pnpm -r --if-present run lint" },
+      { "name": "build", "run": "pnpm -r --if-present run build" }
+    ]
+  },
+  "tests": {
+    "placement": {
+      "style": "sibling"
+    }
+  }
+}

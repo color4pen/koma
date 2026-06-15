@@ -1,0 +1,15 @@
+node_modules
+.next
+.turbo
+dist
+out
+coverage
+*.log
+.DS_Store
+.env*.local
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+.specrunner/*
+!.specrunner/config.json
+node_modules/
