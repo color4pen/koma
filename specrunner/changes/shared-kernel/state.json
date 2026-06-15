@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "fce7b86a-a5c5-4feb-99d5-02791650d543",
   "createdAt": "2026-06-15T10:25:49.721Z",
-  "updatedAt": "2026-06-15T10:33:41.058Z",
+  "updatedAt": "2026-06-15T10:37:11.113Z",
   "request": {
     "title": "packages/shared 共有カーネルを新設し、値オブジェクト Id / Money / Duration / TimeRange を確立する",
     "type": "new-feature",
@@ -12,16 +12,17 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "spec-review",
+  "step": "test-case-gen",
   "status": "running",
   "branch": "feat/shared-kernel-fce7b86a",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 9,
+    "historyCount": 13,
     "stepCounts": {
       "request-review": 1,
-      "design": 1
+      "design": 1,
+      "spec-review": 1
     }
   }
 }
