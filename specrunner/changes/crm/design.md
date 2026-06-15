@@ -98,21 +98,24 @@ type Customer = { ...; readonly customFields: Readonly<Record<string, CustomFiel
 
 ```
 type CustomerRepository = {
-  save(customer: Customer): void;
-  findById(id: Id<'Customer'>): Customer | null;
-  list(): Customer[];
+  save(customer: Customer): Promise<void>;
+  findById(id: Id<'Customer'>): Promise<Customer | null>;
+  list(): Promise<Customer[]>;
 }
 ```
 
 型エイリアスとして定義。ドメインパッケージの `src/port/customer-repository.ts` に配置する。具象実装（Drizzle）は `packages/db` が後続で提供する。
 
-`save` は upsert セマンティクス（同一 id なら上書き、新規なら挿入）とする。返り値は `void`（ID 生成は呼び出し側が `createId` で事前に行う）。
+`save` は upsert セマンティクス（同一 id なら上書き、新規なら挿入）とする。返り値は `Promise<void>`（ID 生成は呼び出し側が `createId` で事前に行う）。
 
-**Rationale**: `dynamic-model.md` の永続化束縛に従い、domain が port を定義し adapter が実装する。`src/port/` に配置することで `model.md` §2 の層 mapping（ports = 各 domain パッケージ内の `src/port/`）に適合する。upsert セマンティクスにより save の呼び出し側が insert/update を区別する必要がない。
+すべてのメソッドは `Promise<T>` を返す。後続で実装される Drizzle アダプタ（`packages/db`）は本質的に非同期であり、port を同期シグネチャにすると adapter 実装時に破壊的変更が生じる。Hexagonal の原則では port は安定した契約であるべきため、当初から非同期シグネチャとする。in-memory 実装は `Promise.resolve()` でラップして契約を満たす。
+
+**Rationale**: `dynamic-model.md` の永続化束縛に従い、domain が port を定義し adapter が実装する。`src/port/` に配置することで `model.md` §2 の層 mapping（ports = 各 domain パッケージ内の `src/port/`）に適合する。upsert セマンティクスにより save の呼び出し側が insert/update を区別する必要がない。非同期シグネチャにより Drizzle アダプタ実装時に port 契約の破壊的変更が不要となり、後続ドメインパッケージ（scheduling / notification）が踏襲する際も同一パターンで対応できる。
 
 **Alternatives considered**:
 - `insert` / `update` を分離 → 呼び出し側の判断負荷が増す。in-memory では Map.set で自然に upsert になる
 - `save` が `Customer` を返す → ID 生成済みの集約を受け取るため、返す意味が薄い
+- 同期シグネチャ（`void` / `T | null` / `T[]`）→ in-memory 実装は単純になるが、Drizzle アダプタ実装時に port 契約の破壊的変更が確定する。Hexagonal の原則に反し、後続の全ドメインパッケージに誤ったパターンが波及する
 
 ### D6: in-memory CustomerRepository — Map ベースのファクトリ関数
 
@@ -120,7 +123,7 @@ type CustomerRepository = {
 function createInMemoryCustomerRepository(): CustomerRepository
 ```
 
-`Map<string, Customer>` を内部状態に持つクロージャベース。`save` は `Map.set`（id をキー）、`findById` は `Map.get ?? null`、`list` は `[...Map.values()]`。
+`Map<string, Customer>` を内部状態に持つクロージャベース。`save` は `Map.set`（id をキー）後に `Promise.resolve()` を返す。`findById` は `Promise.resolve(map.get(id) ?? null)` を返す。`list` は `Promise.resolve([...map.values()])` を返す。すべて非同期 port 契約を `Promise.resolve()` でラップして満たす。
 
 **Rationale**: `@koma/shared` の `createInMemoryEventBus` が確立したファクトリ関数 + クロージャパターンに従う。外部依存ゼロで、テストとデフォルト実装を兼ねる。
 
@@ -165,4 +168,4 @@ packages/crm/
 
 ## Open Questions
 
-なし。request と architect 評価により設計判断は確定済み。
+なし。request と architect 評価により設計判断は確定済み（非同期 port シグネチャの採用を含む）。

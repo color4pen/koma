@@ -69,7 +69,7 @@
   - `createCustomer(params: { id?: Id<'Customer'>; name: string; contact: ContactInfo; tags?: readonly string[]; notes?: string; customFields?: Record<string, CustomFieldValue> }): Customer` ファクトリ関数:
     - `id` 省略時は `createId<'Customer'>()` で自動生成
     - `tags` / `notes` / `customFields` はデフォルト値（空配列 / 空文字 / 空オブジェクト）
-    - `tags` と `customFields` を `Object.freeze` し、Customer 全体も `Object.freeze` して返す
+    - `tags` は呼び出し元から渡された配列を必ず新しい配列にコピー（`[...(params.tags ?? [])]`）してから `Object.freeze` する。`customFields` も同様にスプレッドコピー（`{ ...(params.customFields ?? {}) }`）してから `Object.freeze` する。コピーを行わずに freeze すると呼び出し元が保持するオリジナルのオブジェクトも凍結される副作用が生じるため、必ずコピー後に freeze すること。Customer 全体も `Object.freeze` して返す
   - `updateCustomer(customer: Customer, patch: Partial<Pick<Customer, 'name' | 'contact' | 'tags' | 'notes' | 'customFields'>>): Customer` 更新関数:
     - 元の `customer` は変更しない
     - patch のフィールドを上書きした新しい `Customer` を `createCustomer` 経由（または同等の freeze 処理）で返す
@@ -98,32 +98,34 @@
   - `CustomerRepository` 型エイリアス:
     ```
     {
-      save(customer: Customer): void;
-      findById(id: Id<'Customer'>): Customer | null;
-      list(): Customer[];
+      save(customer: Customer): Promise<void>;
+      findById(id: Id<'Customer'>): Promise<Customer | null>;
+      list(): Promise<Customer[]>;
     }
     ```
+  - すべてのメソッドは `Promise<T>` を返す（後続の Drizzle アダプタが非同期のため、port を非同期シグネチャで定義することで adapter 実装時の破壊的変更を回避する）
   - `Customer` 型と `Id` 型を import する（`@koma/shared` から Id、同パッケージ内から Customer）
 
 **Acceptance Criteria**:
 - `pnpm -F @koma/crm run check-types` が pass
-- `CustomerRepository` 型が `save` / `findById` / `list` の 3 メソッドを持つ
+- `CustomerRepository` 型が `save` / `findById` / `list` の 3 メソッドを持ち、全メソッドが `Promise<T>` を返す
 
 ## T-05: in-memory CustomerRepository 実装
 
 - [ ] `packages/crm/src/in-memory-customer-repository.ts` を作成する:
   - `createInMemoryCustomerRepository(): CustomerRepository` ファクトリ関数をエクスポート
   - 内部に `Map<string, Customer>` を保持するクロージャ
-  - `save`: `customer.id` をキーに `Map.set`（upsert セマンティクス）
-  - `findById`: `Map.get(id) ?? null`
-  - `list`: `[...map.values()]`
+  - `save`: `customer.id` をキーに `Map.set`（upsert セマンティクス）後に `Promise.resolve()` を返す
+  - `findById`: `Promise.resolve(map.get(id) ?? null)` を返す
+  - `list`: `Promise.resolve([...map.values()])` を返す
+  - すべてのメソッドは非同期 port 契約を `Promise.resolve()` でラップして満たす
 - [ ] `packages/crm/src/in-memory-customer-repository.test.ts` を作成する:
-  - `save` した Customer を `findById` で取得できることを検証
-  - 未保存の id で `findById` すると `null` が返ることを検証
-  - `save` → `list` で保存分が全て返ることを検証
-  - 空の状態で `list` が空配列を返すことを検証
-  - 同一 id で `save` を 2 回呼ぶと上書き（upsert）されることを検証
-  - 複数の Customer を save し、`list` が全件返すことを検証
+  - `save` した Customer を `findById` で取得できることを検証（`await` を使用）
+  - 未保存の id で `findById` すると `null` が返ることを検証（`await` を使用）
+  - `save` → `list` で保存分が全て返ることを検証（`await` を使用）
+  - 空の状態で `list` が空配列を返すことを検証（`await` を使用）
+  - 同一 id で `save` を 2 回呼ぶと上書き（upsert）されることを検証（`await` を使用）
+  - 複数の Customer を save し、`list` が全件返すことを検証（`await` を使用）
 
 **Acceptance Criteria**:
 - `pnpm -F @koma/crm run test` で in-memory 実装関連テストが全て pass
