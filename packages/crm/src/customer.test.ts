@@ -87,4 +87,10 @@ describe('updateCustomer', () => {
     expect(original.tags).toEqual(['VIP']);
     expect(updated.tags).toEqual(['新規']);
   });
+
+  it('id を保持する（TC-015）', () => {
+    const original = createCustomer({ name: '山田 太郎', contact });
+    const updated = updateCustomer(original, { name: '田中 花子' });
+    expect(updated.id).toBe(original.id);
+  });
 });
