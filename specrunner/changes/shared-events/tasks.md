@@ -2,13 +2,13 @@
 
 ## T-01: DomainEvent 基底型・EventMap 型・EventBus port interface
 
-- [ ] `packages/shared/src/event.ts` を作成する:
+- [x] `packages/shared/src/event.ts` を作成する:
   - `DomainEvent` 型エイリアス: `{ readonly name: string; readonly occurredAt: number }`
   - `EventMap` 型エイリアス: `Record<string, DomainEvent>`（イベント名 → ペイロード型の対応を定義する基底型）
   - `EventBus<M extends EventMap = EventMap>` 型エイリアス:
     - `publish<N extends keyof M & string>(event: M[N] & { readonly name: N }): void` — EventMap `M` で型付けされたイベントを受け取り、`name` フィールドから型パラメータ `N` を推論する
     - `subscribe<N extends keyof M & string>(name: N, handler: (event: M[N]) => void): () => void` — イベント名 `N` に対応するペイロード型の handler を受け取り、購読解除関数を返す
-- [ ] `packages/shared/src/event.test.ts` を作成する:
+- [x] `packages/shared/src/event.test.ts` を作成する:
   - 型テスト: 具体イベント型（`name` + `occurredAt` + 追加フィールド）が `DomainEvent` に代入可能であることを検証
   - 型テスト: `@ts-expect-error` で `name` フィールドが欠けた型は `DomainEvent` に代入できないことを検証
 
@@ -18,13 +18,13 @@
 
 ## T-02: 同期 in-memory EventBus 実装
 
-- [ ] `packages/shared/src/in-memory-event-bus.ts` を作成する:
+- [x] `packages/shared/src/in-memory-event-bus.ts` を作成する:
   - `createInMemoryEventBus<M extends EventMap = EventMap>(): EventBus<M>` ファクトリ関数をエクスポート
   - 内部に `Map<string, Set<(event: DomainEvent) => void>>` を保持するクロージャ
   - `publish`: `event.name` をキーに `Map` からハンドラの `Set` を取得し、同期で順次呼び出す。ハンドラ未登録の `name` への publish は no-op
   - `subscribe`: ハンドラを `Set` に追加し、購読解除関数 `() => void` を返す。購読解除関数は `Set` からハンドラを削除する
   - `event.ts` から `DomainEvent` / `EventMap` / `EventBus` を import する
-- [ ] `packages/shared/src/in-memory-event-bus.test.ts` を作成する:
+- [x] `packages/shared/src/in-memory-event-bus.test.ts` を作成する:
   - publish したイベントが同じ `name` の subscriber に届くことを検証
   - 異なる `name` の subscriber にはイベントが届かないことを検証
   - subscriber がいないイベントの publish がエラーなく完了することを検証
@@ -42,14 +42,14 @@
 
 ## T-03: 公開 API re-export と最終 verification
 
-- [ ] `packages/shared/src/index.ts` に以下の re-export を追加する:
+- [x] `packages/shared/src/index.ts` に以下の re-export を追加する:
   - `event.ts` から: `type { DomainEvent }`, `type { EventMap }`, `type { EventBus }`
   - `in-memory-event-bus.ts` から: `{ createInMemoryEventBus }`
-- [ ] `pnpm -F @koma/shared run check-types` が成功することを確認する
-- [ ] `pnpm -F @koma/shared run test` が全テスト pass することを確認する
-- [ ] `pnpm -F @koma/shared run lint` が成功することを確認する
-- [ ] `pnpm -r --if-present run check-types && pnpm -r --if-present run test` が green であることを確認する（既存 `apps/web` を含めた全体 verification）
-- [ ] `grep -E '"(next|react|drizzle-orm|zod)"' packages/shared/package.json` が 0 件であることを確認する
+- [x] `pnpm -F @koma/shared run check-types` が成功することを確認する
+- [x] `pnpm -F @koma/shared run test` が全テスト pass することを確認する
+- [x] `pnpm -F @koma/shared run lint` が成功することを確認する
+- [x] `pnpm -r --if-present run check-types && pnpm -r --if-present run test` が green であることを確認する（既存 `apps/web` を含めた全体 verification）
+- [x] `grep -E '"(next|react|drizzle-orm|zod)"' packages/shared/package.json` が 0 件であることを確認する
 
 **Acceptance Criteria**:
 - `DomainEvent` / `EventMap` / `EventBus` / `createInMemoryEventBus` が `@koma/shared` の `src/index.ts` から import 可能

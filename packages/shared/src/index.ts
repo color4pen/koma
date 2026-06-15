@@ -28,3 +28,8 @@ export {
   timeRangeDuration,
   isEqualTimeRange,
 } from './time-range.js';
+
+export type { DomainEvent } from './event.js';
+export type { EventMap } from './event.js';
+export type { EventBus } from './event.js';
+export { createInMemoryEventBus } from './in-memory-event-bus.js';
