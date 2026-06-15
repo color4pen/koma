@@ -35,3 +35,10 @@
 {"type":"transition","ts":"2026-06-15T12:02:05.086Z","step":"step-transition","status":"ok","message":"verification → code-review"}
 {"type":"transition","ts":"2026-06-15T12:02:05.087Z","step":"code-review","status":"started","message":"code-review iteration 1 started"}
 {"type":"transition","ts":"2026-06-15T12:02:05.089Z","step":"code-review-started","status":"started","message":"Starting code-review step"}
+{"type":"transition","ts":"2026-06-15T12:05:31.895Z","step":"code-review-verdict","status":"ok","message":"code-review verdict: approved"}
+{"type":"step-attempt","step":"code-review","sessionId":"238dfc13-d2a0-4ca1-a718-bca6d131ac54","outcome":{"verdict":"approved","findingsPath":"specrunner/changes/shared-events/review-feedback-001.md","error":null,"toolResult":{"ok":true,"approved":true,"findings":[]},"followUpAttempts":1,"transientRetryAttempts":0},"startedAt":"2026-06-15T12:02:05.101Z","endedAt":"2026-06-15T12:05:29.923Z"}
+{"type":"lineage","step":"code-review","ts":"2026-06-15T12:05:29.923Z","outputs":[{"path":"specrunner/changes/shared-events/review-feedback-002.md","hash":null}],"inputs":[{"path":"specrunner/changes/shared-events/design.md","hash":"sha256:648014a509e922e07c234324c62e5bec91678cad9ce78cb3181713457351f486"},{"path":"specrunner/changes/shared-events/tasks.md","hash":"sha256:8f8971c11c1bf424d5a133b4a5fca582f94184ec33fd096f938f5d4b611e5188"},{"path":"specrunner/changes/shared-events/test-cases.md","hash":"sha256:0dee3e28fce3fd9286ae88cad040bc2423a19a9969b3b64ea13bca1b2b438af4","required":false},{"path":".","hash":null}]}
+{"type":"transition","ts":"2026-06-15T12:05:31.901Z","step":"code-review","status":"ok","message":"code-review iteration 1 completed with verdict: approved"}
+{"type":"transition","ts":"2026-06-15T12:05:31.901Z","step":"step-transition","status":"ok","message":"code-review → conformance"}
+{"type":"transition","ts":"2026-06-15T12:05:31.902Z","step":"conformance","status":"started","message":"conformance iteration 1 started"}
+{"type":"transition","ts":"2026-06-15T12:05:31.903Z","step":"conformance-started","status":"started","message":"Starting conformance step"}
