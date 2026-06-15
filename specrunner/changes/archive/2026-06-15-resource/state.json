@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "c3e99b65-9a66-4632-bc9c-3bb47eb898cf",
   "createdAt": "2026-06-15T13:27:05.119Z",
-  "updatedAt": "2026-06-15T13:51:08.315Z",
+  "updatedAt": "2026-06-15T13:53:19.587Z",
   "request": {
     "title": "packages/resource を新設し、capacity を持つ Resource 集約と ResourceRepository port（＋ in-memory 実装）を確立する",
     "type": "new-feature",
@@ -13,7 +13,7 @@
     "name": "koma"
   },
   "step": "pr-create",
-  "status": "awaiting-archive",
+  "status": "archived",
   "branch": "feat/resource-c3e99b65",
   "error": null,
   "pipelineId": "standard",
@@ -23,7 +23,7 @@
     "createdAt": "2026-06-15T13:51:08.308Z"
   },
   "_journal": {
-    "historyCount": 47,
+    "historyCount": 48,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
