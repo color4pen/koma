@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "c71f215f-431c-465a-ac23-66c665e51400",
   "createdAt": "2026-06-15T15:12:04.463Z",
-  "updatedAt": "2026-06-15T15:19:13.425Z",
+  "updatedAt": "2026-06-15T15:22:47.437Z",
   "request": {
     "title": "packages/resource に Availability（週次稼働 ＋ 例外）と日次稼働時間の導出を追加する",
     "type": "new-feature",
@@ -12,16 +12,17 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "spec-review",
+  "step": "test-case-gen",
   "status": "running",
   "branch": "feat/resource-availability-c71f215f",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 9,
+    "historyCount": 13,
     "stepCounts": {
       "request-review": 1,
-      "design": 1
+      "design": 1,
+      "spec-review": 1
     }
   }
 }
