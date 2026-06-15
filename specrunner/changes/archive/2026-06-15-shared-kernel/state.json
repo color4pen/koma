@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "fce7b86a-a5c5-4feb-99d5-02791650d543",
   "createdAt": "2026-06-15T10:25:49.721Z",
-  "updatedAt": "2026-06-15T11:08:02.413Z",
+  "updatedAt": "2026-06-15T11:40:01.772Z",
   "request": {
     "title": "packages/shared 共有カーネルを新設し、値オブジェクト Id / Money / Duration / TimeRange を確立する",
     "type": "new-feature",
@@ -13,7 +13,7 @@
     "name": "koma"
   },
   "step": "pr-create",
-  "status": "awaiting-archive",
+  "status": "archived",
   "branch": "feat/shared-kernel-fce7b86a",
   "error": null,
   "pipelineId": "standard",
@@ -23,7 +23,7 @@
     "createdAt": "2026-06-15T11:08:02.404Z"
   },
   "_journal": {
-    "historyCount": 63,
+    "historyCount": 64,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
