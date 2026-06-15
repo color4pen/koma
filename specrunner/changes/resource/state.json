@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "c3e99b65-9a66-4632-bc9c-3bb47eb898cf",
   "createdAt": "2026-06-15T13:27:05.119Z",
-  "updatedAt": "2026-06-15T13:37:26.214Z",
+  "updatedAt": "2026-06-15T13:39:56.371Z",
   "request": {
     "title": "packages/resource を新設し、capacity を持つ Resource 集約と ResourceRepository port（＋ in-memory 実装）を確立する",
     "type": "new-feature",
@@ -12,17 +12,18 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "test-case-gen",
+  "step": "implementer",
   "status": "running",
   "branch": "feat/resource-c3e99b65",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 13,
+    "historyCount": 16,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
-      "spec-review": 1
+      "spec-review": 1,
+      "test-case-gen": 1
     }
   }
 }
