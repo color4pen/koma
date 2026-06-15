@@ -179,6 +179,20 @@
       },
       "jobId": "fce7b86a-a5c5-4feb-99d5-02791650d543",
       "stepName": "conformance"
+    },
+    {
+      "command": "job",
+      "timestamp": "2026-06-15T11:03:51.631Z",
+      "modelUsage": {
+        "claude-sonnet-4-6": {
+          "inputTokens": 31,
+          "outputTokens": 5429,
+          "cacheReadInputTokens": 1243857,
+          "cacheCreationInputTokens": 16909
+        }
+      },
+      "jobId": "fce7b86a-a5c5-4feb-99d5-02791650d543",
+      "stepName": "build-fixer"
     }
   ]
 }

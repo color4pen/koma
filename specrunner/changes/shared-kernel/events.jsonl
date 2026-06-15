@@ -72,3 +72,15 @@
 {"type":"transition","ts":"2026-06-15T11:01:02.324Z","step":"verification","status":"warning","message":"verification iteration 1 completed with verdict: failed"}
 {"type":"transition","ts":"2026-06-15T11:01:02.324Z","step":"step-transition","status":"ok","message":"verification → build-fixer"}
 {"type":"transition","ts":"2026-06-15T11:01:02.325Z","step":"build-fixer-started","status":"started","message":"Starting build-fixer step"}
+{"type":"transition","ts":"2026-06-15T11:03:53.234Z","step":"build-fixer-verdict","status":"ok","message":"build-fixer verdict: success"}
+{"type":"step-attempt","step":"build-fixer","sessionId":"adb149d0-5591-4c19-b19e-5c6a88f8eb05","outcome":{"verdict":"success","findingsPath":null,"error":null,"toolResult":{"ok":true,"status":"success"},"followUpAttempts":1,"transientRetryAttempts":0},"startedAt":"2026-06-15T11:01:02.332Z","endedAt":"2026-06-15T11:03:51.631Z"}
+{"type":"lineage","step":"build-fixer","ts":"2026-06-15T11:03:51.631Z","outputs":[{"path":"specrunner/changes/shared-kernel","hash":null}],"inputs":[{"path":"specrunner/changes/shared-kernel/verification-result.md","hash":"sha256:ea9d88819d830775cb360f110a812dcc4ae23e6cc10d22c4477d3ff6f7f1ca52"}]}
+{"type":"transition","ts":"2026-06-15T11:03:53.241Z","step":"step-transition","status":"ok","message":"build-fixer → verification"}
+{"type":"transition","ts":"2026-06-15T11:03:53.243Z","step":"verification","status":"started","message":"verification iteration 2 started"}
+{"type":"transition","ts":"2026-06-15T11:03:53.245Z","step":"step-transition","status":"ok","message":"Transitioning to verification step"}
+{"type":"transition","ts":"2026-06-15T11:04:08.084Z","step":"verification-verdict","status":"ok","message":"verification verdict: passed"}
+{"type":"step-attempt","step":"verification","sessionId":null,"outcome":{"verdict":"passed","findingsPath":"specrunner/changes/shared-kernel/verification-result.md","error":null,"toolResult":null,"followUpAttempts":0},"startedAt":"2026-06-15T11:03:53.247Z","endedAt":"2026-06-15T11:04:08.083Z"}
+{"type":"lineage","step":"verification","ts":"2026-06-15T11:04:08.083Z","outputs":[{"path":"specrunner/changes/shared-kernel/verification-result.md","hash":"sha256:d317fea924610a06145a73b4590cf468e43a51cfd66f3df0aa1e361ea48cb68b"}],"inputs":[{"path":".","hash":null}]}
+{"type":"transition","ts":"2026-06-15T11:04:08.090Z","step":"verification","status":"ok","message":"verification iteration 2 completed with verdict: passed"}
+{"type":"transition","ts":"2026-06-15T11:04:08.090Z","step":"step-transition","status":"ok","message":"verification → adr-gen"}
+{"type":"transition","ts":"2026-06-15T11:04:08.094Z","step":"adr-gen-started","status":"started","message":"Starting adr-gen step"}
