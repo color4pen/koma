@@ -60,6 +60,12 @@ describe('createCustomer', () => {
     });
     expect(Object.isFrozen(customer.tags)).toBe(true);
   });
+
+  it('呼び出し元の tags 配列は freeze されない（TC-018）', () => {
+    const originalTags = ['VIP'];
+    createCustomer({ name: '山田 太郎', contact, tags: originalTags });
+    expect(Object.isFrozen(originalTags)).toBe(false);
+  });
 });
 
 describe('updateCustomer', () => {
