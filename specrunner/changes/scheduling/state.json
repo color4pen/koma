@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "f177e4a4-db6f-4761-8792-2aa4882f307a",
   "createdAt": "2026-06-15T14:26:41.094Z",
-  "updatedAt": "2026-06-15T14:26:45.749Z",
+  "updatedAt": "2026-06-15T14:29:57.927Z",
   "request": {
     "title": "packages/scheduling を新設し、Booking 集約・BookingStatus 状態機械・capacity-aware 二重予約整合性を確立する",
     "type": "new-feature",
@@ -12,13 +12,15 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "request-review",
+  "step": "design",
   "status": "running",
   "branch": "feat/scheduling-f177e4a4",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 2,
-    "stepCounts": {}
+    "historyCount": 5,
+    "stepCounts": {
+      "request-review": 1
+    }
   }
 }
