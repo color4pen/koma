@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "c71f215f-431c-465a-ac23-66c665e51400",
   "createdAt": "2026-06-15T15:12:04.463Z",
-  "updatedAt": "2026-06-15T15:41:45.922Z",
+  "updatedAt": "2026-06-15T15:42:09.533Z",
   "request": {
     "title": "packages/resource に Availability（週次稼働 ＋ 例外）と日次稼働時間の導出を追加する",
     "type": "new-feature",
@@ -12,13 +12,18 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "adr-gen",
-  "status": "running",
+  "step": "pr-create",
+  "status": "awaiting-archive",
   "branch": "feat/resource-availability-c71f215f",
   "error": null,
   "pipelineId": "standard",
+  "pullRequest": {
+    "url": "https://github.com/color4pen/koma/pull/10",
+    "number": 10,
+    "createdAt": "2026-06-15T15:42:09.526Z"
+  },
   "_journal": {
-    "historyCount": 42,
+    "historyCount": 47,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
@@ -28,7 +33,9 @@
       "verification": 2,
       "code-review": 1,
       "code-fixer": 1,
-      "conformance": 1
+      "conformance": 1,
+      "adr-gen": 1,
+      "pr-create": 1
     }
   }
 }
