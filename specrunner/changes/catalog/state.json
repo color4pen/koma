@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "1a6261eb-9a44-4d34-a8d7-1f003a18d166",
   "createdAt": "2026-06-15T13:55:18.194Z",
-  "updatedAt": "2026-06-15T14:16:20.451Z",
+  "updatedAt": "2026-06-15T14:20:52.090Z",
   "request": {
     "title": "packages/catalog を新設し、Service 集約と ServiceRepository port（＋ in-memory 実装）を確立する",
     "type": "new-feature",
@@ -12,22 +12,23 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "conformance",
+  "step": "adr-gen",
   "status": "running",
   "branch": "feat/catalog-1a6261eb",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 33,
+    "historyCount": 42,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
       "spec-review": 1,
       "test-case-gen": 1,
       "implementer": 1,
-      "verification": 1,
+      "verification": 2,
       "code-review": 1,
-      "code-fixer": 1
+      "code-fixer": 1,
+      "conformance": 1
     }
   }
 }
