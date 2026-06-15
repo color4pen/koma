@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "922cfc99-548c-4d4e-b6d8-9a74cd9a105d",
   "createdAt": "2026-06-15T11:43:53.611Z",
-  "updatedAt": "2026-06-15T11:44:00.780Z",
+  "updatedAt": "2026-06-15T11:46:41.772Z",
   "request": {
     "title": "packages/shared に DomainEvent 基底型と EventBus port（＋同期 in-memory 実装）を追加する",
     "type": "new-feature",
@@ -12,13 +12,15 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "request-review",
+  "step": "design",
   "status": "running",
   "branch": "feat/shared-events-922cfc99",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 2,
-    "stepCounts": {}
+    "historyCount": 5,
+    "stepCounts": {
+      "request-review": 1
+    }
   }
 }
