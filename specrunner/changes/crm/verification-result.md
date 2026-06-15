@@ -6,10 +6,10 @@
 
 | # | Phase | Status | Duration | Exit Code |
 |---|-------|--------|----------|-----------|
-| 1 | typecheck | passed | 1.3s | 0 |
-| 2 | test | passed | 1.1s | 0 |
-| 3 | lint | passed | 6.0s | 0 |
-| 4 | build | passed | 8.8s | 0 |
+| 1 | typecheck | passed | 1.5s | 0 |
+| 2 | test | passed | 1.2s | 0 |
+| 3 | lint | passed | 8.8s | 0 |
+| 4 | build | passed | 7.9s | 0 |
 
 ## Phase: typecheck
 
@@ -30,26 +30,26 @@ packages/crm check-types: Done
 Scope: 3 of 4 workspace projects
 packages/shared test$ vitest run
 packages/shared test:  RUN  v2.1.9 packages/shared
-packages/shared test:  ✓ src/event.test.ts (6 tests) 1ms
-packages/shared test:  ✓ src/in-memory-event-bus.test.ts (10 tests) 5ms
 packages/shared test:  ✓ src/duration.test.ts (12 tests) 3ms
+packages/shared test:  ✓ src/money.test.ts (16 tests) 3ms
+packages/shared test:  ✓ src/event.test.ts (6 tests) 1ms
 packages/shared test:  ✓ src/id.test.ts (9 tests) 3ms
-packages/shared test:  ✓ src/time-range.test.ts (18 tests) 3ms
-packages/shared test:  ✓ src/money.test.ts (16 tests) 5ms
+packages/shared test:  ✓ src/in-memory-event-bus.test.ts (10 tests) 7ms
+packages/shared test:  ✓ src/time-range.test.ts (18 tests) 6ms
 packages/shared test:  Test Files  6 passed (6)
 packages/shared test:       Tests  71 passed (71)
-packages/shared test:    Start at  21:48:37
-packages/shared test:    Duration  265ms (transform 135ms, setup 0ms, collect 222ms, tests 21ms, environment 3ms, prepare 433ms)
+packages/shared test:    Start at  22:08:41
+packages/shared test:    Duration  284ms (transform 152ms, setup 0ms, collect 204ms, tests 24ms, environment 5ms, prepare 444ms)
 packages/shared test: Done
 packages/crm test$ vitest run
 packages/crm test:  RUN  v2.1.9 packages/crm
 packages/crm test:  ✓ src/contact-info.test.ts (7 tests) 2ms
 packages/crm test:  ✓ src/in-memory-customer-repository.test.ts (6 tests) 3ms
-packages/crm test:  ✓ src/customer.test.ts (11 tests) 3ms
+packages/crm test:  ✓ src/customer.test.ts (13 tests) 3ms
 packages/crm test:  Test Files  3 passed (3)
-packages/crm test:       Tests  24 passed (24)
-packages/crm test:    Start at  21:48:37
-packages/crm test:    Duration  219ms (transform 64ms, setup 0ms, collect 86ms, tests 8ms, environment 0ms, prepare 130ms)
+packages/crm test:       Tests  26 passed (26)
+packages/crm test:    Start at  22:08:42
+packages/crm test:    Duration  223ms (transform 61ms, setup 0ms, collect 103ms, tests 8ms, environment 0ms, prepare 148ms)
 packages/crm test: Done
 
 ```
@@ -64,13 +64,13 @@ apps/web lint: `next lint` is deprecated and will be removed in Next.js 16.
 apps/web lint: For new projects, use create-next-app to choose your preferred linter.
 apps/web lint: For existing projects, migrate to the ESLint CLI:
 apps/web lint: npx @next/codemod@canary next-lint-to-eslint-cli .
-packages/shared lint: Done
 apps/web lint:  ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
 apps/web lint:  We detected multiple lockfiles and selected the directory of ~/Documents/GitHub/koma/pnpm-lock.yaml as the root directory.
 apps/web lint:  To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
 apps/web lint:    See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
 apps/web lint:  Detected additional lockfiles: 
 apps/web lint:    * pnpm-lock.yaml
+packages/shared lint: Done
 apps/web lint: ✔ No ESLint warnings or errors
 apps/web lint: Done
 packages/crm lint$ eslint .
@@ -91,7 +91,7 @@ apps/web build:  Detected additional lockfiles:
 apps/web build:    * pnpm-lock.yaml
 apps/web build:    ▲ Next.js 15.5.19
 apps/web build:    Creating an optimized production build ...
-apps/web build:  ✓ Compiled successfully in 1794ms
+apps/web build:  ✓ Compiled successfully in 779ms
 apps/web build:    Linting and checking validity of types ...
 apps/web build:    Collecting page data ...
 apps/web build:    Generating static pages (0/4) ...
