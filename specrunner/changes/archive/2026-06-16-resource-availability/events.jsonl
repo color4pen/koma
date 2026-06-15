@@ -68,3 +68,4 @@
 {"type":"step-attempt","step":"pr-create","sessionId":null,"outcome":{"verdict":"success","findingsPath":"specrunner/changes/resource-availability/pr-create-result.md","error":null,"toolResult":null,"followUpAttempts":0},"startedAt":"2026-06-15T15:42:06.889Z","endedAt":"2026-06-15T15:42:09.527Z"}
 {"type":"lineage","step":"pr-create","ts":"2026-06-15T15:42:09.527Z","outputs":[{"path":"specrunner/changes/resource-availability/pr-create-result.md","hash":"sha256:f3792b1dc9eaa10ae1f3be0811c5a5b7576a1951dfa01200559729b85dcb4143"}],"inputs":[{"path":"feat/resource-availability-c71f215f","hash":null}]}
 {"type":"transition","ts":"2026-06-15T15:42:09.533Z","step":"pipeline","status":"ok","message":"running → awaiting-archive: pipeline complete"}
+{"type":"transition","ts":"2026-06-15T15:44:22.303Z","step":"archive","status":"ok","message":"awaiting-archive → archived: change archived"}
