@@ -1,15 +1,15 @@
 # Verification Result — shared-kernel — iter 1
 
-## Verdict: passed
+## Verdict: failed
 
 ## Phase Results
 
 | # | Phase | Status | Duration | Exit Code |
 |---|-------|--------|----------|-----------|
-| 1 | typecheck | passed | 0.9s | 0 |
+| 1 | typecheck | passed | 1.1s | 0 |
 | 2 | test | passed | 0.8s | 0 |
-| 3 | lint | passed | 1.2s | 0 |
-| 4 | build | passed | 9.0s | 0 |
+| 3 | lint | failed | 0.8s | 1 |
+| 4 | build | skipped | — | — |
 
 ## Phase: typecheck
 
@@ -28,19 +28,21 @@ apps/web check-types: Done
 Scope: 2 of 3 workspace projects
 packages/shared test$ vitest run
 packages/shared test:  RUN  v2.1.9 packages/shared
-packages/shared test:  ✓ src/time-range.test.ts (18 tests) 4ms
-packages/shared test:  ✓ src/duration.test.ts (12 tests) 3ms
-packages/shared test:  ✓ src/money.test.ts (16 tests) 4ms
 packages/shared test:  ✓ src/id.test.ts (9 tests) 3ms
+packages/shared test:  ✓ src/duration.test.ts (12 tests) 3ms
+packages/shared test:  ✓ src/time-range.test.ts (18 tests) 5ms
+packages/shared test:  ✓ src/money.test.ts (16 tests) 3ms
 packages/shared test:  Test Files  4 passed (4)
 packages/shared test:       Tests  55 passed (55)
-packages/shared test:    Start at  19:49:45
-packages/shared test:    Duration  284ms (transform 74ms, setup 0ms, collect 113ms, tests 13ms, environment 0ms, prepare 253ms)
+packages/shared test:    Start at  20:00:58
+packages/shared test:    Duration  279ms (transform 68ms, setup 0ms, collect 106ms, tests 15ms, environment 0ms, prepare 264ms)
 packages/shared test: Done
 
 ```
 
 ## Phase: lint
+
+Step 'lint' failed
 
 ```
 Scope: 2 of 3 workspace projects
@@ -56,45 +58,18 @@ apps/web lint:  To silence this warning, set `outputFileTracingRoot` in your Nex
 apps/web lint:    See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
 apps/web lint:  Detected additional lockfiles: 
 apps/web lint:    * pnpm-lock.yaml
-packages/shared lint: Done
-apps/web lint:  ⚠ The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
-apps/web lint: ✔ No ESLint warnings or errors
-apps/web lint: Done
+apps/web lint: ? How would you like to configure ESLint? https://nextjs.org/docs/app/api-reference/config/eslint
+apps/web lint: [?25l❯  Strict (recommended)
+apps/web lint:    Base
+apps/web lint:  ⚠ If you set up ESLint yourself, we recommend adding the Next.js ESLint plugin. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
+apps/web lint:    Cancel
+apps/web lint: Failed
+apps/web:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @koma/web@ lint: `next lint`
+Exit status 1
 
 ```
 
 ## Phase: build
 
-```
-Scope: 2 of 3 workspace projects
-apps/web build$ next build
-apps/web build:  ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
-apps/web build:  We detected multiple lockfiles and selected the directory of ~/Documents/GitHub/koma/pnpm-lock.yaml as the root directory.
-apps/web build:  To silence this warning, set `outputFileTracingRoot` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
-apps/web build:    See https://nextjs.org/docs/app/api-reference/config/next-config-js/output#caveats for more information.
-apps/web build:  Detected additional lockfiles: 
-apps/web build:    * pnpm-lock.yaml
-apps/web build:    ▲ Next.js 15.5.19
-apps/web build:    Creating an optimized production build ...
-apps/web build:  ✓ Compiled successfully in 1861ms
-apps/web build:    Linting and checking validity of types ...
-apps/web build:  ⚠ The Next.js plugin was not detected in your ESLint configuration. See https://nextjs.org/docs/app/api-reference/config/eslint#migrating-existing-config
-apps/web build:    Collecting page data ...
-apps/web build:    Generating static pages (0/4) ...
-apps/web build:    Generating static pages (1/4) 
-apps/web build:    Generating static pages (2/4) 
-apps/web build:    Generating static pages (3/4) 
-apps/web build:  ✓ Generating static pages (4/4)
-apps/web build:    Finalizing page optimization ...
-apps/web build:    Collecting build traces ...
-apps/web build: Route (app)                                 Size  First Load JS
-apps/web build: ┌ ○ /                                      127 B         102 kB
-apps/web build: └ ○ /_not-found                            990 B         103 kB
-apps/web build: + First Load JS shared by all             102 kB
-apps/web build:   ├ chunks/4557610a-fefa5be19e77ed4a.js  54.2 kB
-apps/web build:   ├ chunks/785-778584e14f2dca51.js       45.8 kB
-apps/web build:   └ other shared chunks (total)          1.88 kB
-apps/web build: ○  (Static)  prerendered as static content
-apps/web build: Done
-
-```
+_(skipped — previous command failed)_
