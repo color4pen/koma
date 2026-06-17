@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "7ab9e76e-77dc-4938-9eb3-2dd8e7a3a6e2",
   "createdAt": "2026-06-17T16:05:21.167Z",
-  "updatedAt": "2026-06-17T16:37:38.182Z",
+  "updatedAt": "2026-06-17T16:38:10.679Z",
   "request": {
     "title": "apps/web に予約作成フローを追加する（capacity-aware 二重予約防止・コンテキスト横断 use-case）",
     "type": "new-feature",
@@ -12,13 +12,13 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "code-fixer",
+  "step": "conformance",
   "status": "running",
   "branch": "feat/web-booking-7ab9e76e",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 29,
+    "historyCount": 33,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
@@ -26,7 +26,8 @@
       "test-case-gen": 1,
       "implementer": 1,
       "verification": 1,
-      "code-review": 1
+      "code-review": 1,
+      "code-fixer": 1
     }
   }
 }

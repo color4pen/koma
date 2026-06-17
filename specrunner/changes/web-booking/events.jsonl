@@ -41,3 +41,9 @@
 {"type":"transition","ts":"2026-06-17T16:37:38.178Z","step":"code-review","status":"ok","message":"code-review iteration 1 completed with verdict: approved"}
 {"type":"transition","ts":"2026-06-17T16:37:38.179Z","step":"step-transition","status":"ok","message":"code-review → code-fixer"}
 {"type":"transition","ts":"2026-06-17T16:37:38.182Z","step":"code-fixer-started","status":"started","message":"Starting code-fixer step"}
+{"type":"transition","ts":"2026-06-17T16:38:10.675Z","step":"code-fixer-verdict","status":"ok","message":"code-fixer verdict: approved"}
+{"type":"step-attempt","step":"code-fixer","sessionId":"0e8323fb-5de6-4d24-9d12-9e632ef24ae8","outcome":{"verdict":"approved","findingsPath":null,"error":null,"toolResult":{"ok":true,"status":"success"},"followUpAttempts":1,"transientRetryAttempts":0},"startedAt":"2026-06-17T16:37:38.195Z","endedAt":"2026-06-17T16:38:09.016Z"}
+{"type":"lineage","step":"code-fixer","ts":"2026-06-17T16:38:09.016Z","outputs":[{"path":"specrunner/changes/web-booking","hash":null}],"inputs":[{"path":"specrunner/changes/web-booking/review-feedback-001.md","hash":"sha256:dc065658c04ed72adffcdb2639a93eec837da42d9349f0e0d20ff63920679b6a"}]}
+{"type":"transition","ts":"2026-06-17T16:38:10.678Z","step":"step-transition","status":"ok","message":"code-fixer → conformance"}
+{"type":"transition","ts":"2026-06-17T16:38:10.678Z","step":"conformance","status":"started","message":"conformance iteration 1 started"}
+{"type":"transition","ts":"2026-06-17T16:38:10.679Z","step":"conformance-started","status":"started","message":"Starting conformance step"}
