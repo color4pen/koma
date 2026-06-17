@@ -29,6 +29,9 @@ importers:
       '@koma/resource':
         specifier: workspace:*
         version: link:../../packages/resource
+      '@koma/scheduling':
+        specifier: workspace:*
+        version: link:../../packages/scheduling
       '@koma/shared':
         specifier: workspace:*
         version: link:../../packages/shared

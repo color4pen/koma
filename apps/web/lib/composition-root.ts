@@ -4,11 +4,14 @@ import type { CustomerRepository } from '@koma/crm';
 import { createInMemoryCustomerRepository } from '@koma/crm';
 import type { ResourceRepository } from '@koma/resource';
 import { createInMemoryResourceRepository } from '@koma/resource';
+import type { BookingRepository } from '@koma/scheduling';
+import { createInMemoryBookingRepository } from '@koma/scheduling';
 
 const globalForApp = globalThis as typeof globalThis & {
   customerRepository?: CustomerRepository;
   resourceRepository?: ResourceRepository;
   serviceRepository?: ServiceRepository;
+  bookingRepository?: BookingRepository;
 };
 
 export function getCustomerRepository(): CustomerRepository {
@@ -30,4 +33,11 @@ export function getServiceRepository(): ServiceRepository {
     globalForApp.serviceRepository = createInMemoryServiceRepository();
   }
   return globalForApp.serviceRepository;
+}
+
+export function getBookingRepository(): BookingRepository {
+  if (!globalForApp.bookingRepository) {
+    globalForApp.bookingRepository = createInMemoryBookingRepository();
+  }
+  return globalForApp.bookingRepository;
 }
