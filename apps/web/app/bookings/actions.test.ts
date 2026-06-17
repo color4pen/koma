@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createInMemoryServiceRepository, createService } from '@koma/catalog';
 import { createResource, createInMemoryResourceRepository } from '@koma/resource';
-import { createInMemoryBookingRepository } from '@koma/scheduling';
+import { createBooking, createInMemoryBookingRepository } from '@koma/scheduling';
 import { createMoney, ofMinutes } from '@koma/shared';
 
 // Mock next/cache so revalidatePath does not throw in test environment
@@ -20,7 +20,7 @@ vi.mock('@/lib/composition-root', () => ({
 }));
 
 // Import after mocks are established
-const { createBookingAction } = await import('./actions');
+const { createBookingAction, transitionBookingAction } = await import('./actions');
 const { revalidatePath } = await import('next/cache');
 
 function makeFormData(fields: {
@@ -132,6 +132,74 @@ describe('createBookingAction', () => {
       });
 
       await createBookingAction(null, fd);
+
+      expect(revalidatePath).toHaveBeenCalledWith('/bookings');
+    });
+  });
+});
+
+describe('transitionBookingAction', () => {
+  beforeEach(async () => {
+    testServiceRepo = createInMemoryServiceRepository();
+    testResourceRepo = createInMemoryResourceRepository();
+    testBookingRepo = createInMemoryBookingRepository();
+    vi.clearAllMocks();
+  });
+
+  function makeBooking() {
+    return createBooking({
+      customerId: 'customer-1' as Parameters<typeof createBooking>[0]['customerId'],
+      serviceId: 'service-1' as Parameters<typeof createBooking>[0]['serviceId'],
+      resourceId: 'resource-1' as Parameters<typeof createBooking>[0]['resourceId'],
+      slot: { start: Date.now(), end: Date.now() + 3600_000 },
+    });
+  }
+
+  describe('TC-101: 許可遷移（pending → confirmed）で status が更新され save される', () => {
+    it('ok: true が返り、repo の予約が confirmed になる', async () => {
+      const booking = makeBooking();
+      await testBookingRepo.save(booking);
+
+      const result = await transitionBookingAction(booking.id, 'confirmed');
+
+      expect(result.ok).toBe(true);
+      const saved = await testBookingRepo.findById(booking.id);
+      expect(saved?.status).toBe('confirmed');
+    });
+  });
+
+  describe('TC-102: 不正遷移（pending → completed）でエラーが返り save されない', () => {
+    it('ok: false が返り、repo の予約の status は pending のまま', async () => {
+      const booking = makeBooking();
+      await testBookingRepo.save(booking);
+
+      const result = await transitionBookingAction(booking.id, 'completed');
+
+      expect(result.ok).toBe(false);
+      if (result.ok) return;
+      expect(result.errors._form).toBeDefined();
+
+      const saved = await testBookingRepo.findById(booking.id);
+      expect(saved?.status).toBe('pending');
+    });
+  });
+
+  describe('TC-103: 存在しない bookingId でエラーが返る', () => {
+    it('ok: false が返る', async () => {
+      const result = await transitionBookingAction('non-existent-id', 'confirmed');
+
+      expect(result.ok).toBe(false);
+      if (result.ok) return;
+      expect(result.errors._form).toBeDefined();
+    });
+  });
+
+  describe("TC-104: 成功時に revalidatePath('/bookings') が呼ばれる", () => {
+    it("revalidatePath が '/bookings' で呼ばれる", async () => {
+      const booking = makeBooking();
+      await testBookingRepo.save(booking);
+
+      await transitionBookingAction(booking.id, 'confirmed');
 
       expect(revalidatePath).toHaveBeenCalledWith('/bookings');
     });
