@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "fbdf0dfe-6b25-405b-9681-313b68d5d63c",
   "createdAt": "2026-06-17T13:54:36.688Z",
-  "updatedAt": "2026-06-17T14:12:59.516Z",
+  "updatedAt": "2026-06-17T14:15:46.240Z",
   "request": {
     "title": "apps/web に顧客の一覧・登録 管理画面を追加する（delivery 層 ＋ zod/mini 境界検証）",
     "type": "new-feature",
@@ -12,17 +12,18 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "test-case-gen",
+  "step": "implementer",
   "status": "running",
   "branch": "feat/web-customers-fbdf0dfe",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 13,
+    "historyCount": 16,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
-      "spec-review": 1
+      "spec-review": 1,
+      "test-case-gen": 1
     }
   }
 }

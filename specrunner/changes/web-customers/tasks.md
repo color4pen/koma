@@ -2,20 +2,20 @@
 
 ## T-01: 依存追加とプロジェクト設定
 
-- [ ] `apps/web/package.json` の `dependencies` に以下を追加する:
+- [x] `apps/web/package.json` の `dependencies` に以下を追加する:
   - `"@koma/crm": "workspace:*"`
   - `"zod": "^3.25.0"`（`zod/mini` サブパスを使用するため v3.25+ が必要。もし v4 系が利用可能ならそちらを使用。`pnpm add` で最新安定版を入れて `zod/mini` の import が解決することを確認する）
-- [ ] `apps/web/package.json` の `devDependencies` に以下を追加する:
+- [x] `apps/web/package.json` の `devDependencies` に以下を追加する:
   - `"vitest": "^2.1.8"`（他パッケージと同一バージョン）
-- [ ] `apps/web/package.json` の `scripts` に `"test": "vitest run"` を追加する
-- [ ] `apps/web/next.config.ts` を更新する:
+- [x] `apps/web/package.json` の `scripts` に `"test": "vitest run"` を追加する
+- [x] `apps/web/next.config.ts` を更新する:
   - `transpilePackages: ['@koma/crm', '@koma/shared']` を追加する
   - `@koma/shared` は `@koma/crm` の推移的依存であり、webpack が `@koma/crm` ソース内の import を解決する際に必要
-- [ ] `apps/web/vitest.config.ts` を新規作成する:
+- [x] `apps/web/vitest.config.ts` を新規作成する:
   - `test.include`: `['lib/**/*.test.ts', 'app/**/*.test.ts']`
   - `resolve.alias`: `{ '@': path.resolve(__dirname, '.') }`（tsconfig.json のパスエイリアスに合わせる）
-- [ ] `pnpm install` を実行してワークスペースリンクを確立する
-- [ ] `drizzle-orm` が `apps/web/package.json` に含まれていないことを確認する
+- [x] `pnpm install` を実行してワークスペースリンクを確立する
+- [x] `drizzle-orm` が `apps/web/package.json` に含まれていないことを確認する
 
 **Acceptance Criteria**:
 - `apps/web/package.json` の `dependencies` に `@koma/crm`（`workspace:*`）と `zod` が存在する
@@ -26,7 +26,7 @@
 
 ## T-02: composition root
 
-- [ ] `apps/web/lib/composition-root.ts` を新規作成する:
+- [x] `apps/web/lib/composition-root.ts` を新規作成する:
   - `@koma/crm` から `type CustomerRepository` と `createInMemoryCustomerRepository` を import する
   - `globalThis` にキャストした `globalForApp` オブジェクトに `customerRepository: CustomerRepository | undefined` を保持する
   - `getCustomerRepository(): CustomerRepository` 関数を export する:
@@ -42,7 +42,7 @@
 
 ## T-03: `parseCustomerInput` 純関数
 
-- [ ] `apps/web/lib/parse-customer-input.ts` を新規作成する:
+- [x] `apps/web/lib/parse-customer-input.ts` を新規作成する:
   - `zod/mini` から schema API を import する
   - `@koma/crm` から `createContactInfo`, `createCustomer`, `type Customer` を import する
   - 戻り値型を定義する:
@@ -68,7 +68,7 @@
 
 ## T-04: `parseCustomerInput` の vitest テスト
 
-- [ ] `apps/web/lib/parse-customer-input.test.ts` を新規作成する:
+- [x] `apps/web/lib/parse-customer-input.test.ts` を新規作成する:
   - `parseCustomerInput` を import する
   - **有効入力のテスト**:
     - 名前と電話のみで `ok: true` と妥当な Customer が返る（`customer.name` / `customer.contact.phone` / `customer.contact.email === null`）
@@ -94,7 +94,7 @@
 
 ## T-05: `createCustomerAction` server action
 
-- [ ] `apps/web/app/customers/actions.ts` を新規作成する:
+- [x] `apps/web/app/customers/actions.ts` を新規作成する:
   - ファイル先頭に `'use server';` ディレクティブを記述する
   - `@/lib/parse-customer-input` から `parseCustomerInput` を import する
   - `@/lib/composition-root` から `getCustomerRepository` を import する
@@ -117,7 +117,7 @@
 
 ## T-06: `CustomerForm` client component
 
-- [ ] `apps/web/app/customers/customer-form.tsx` を新規作成する:
+- [x] `apps/web/app/customers/customer-form.tsx` を新規作成する:
   - ファイル先頭に `'use client';` ディレクティブを記述する
   - `react` から `useActionState` を import する
   - `./actions` から `createCustomerAction` と `type ActionState` を import する
@@ -139,7 +139,7 @@
 
 ## T-07: `app/customers/page.tsx` 顧客一覧ページ
 
-- [ ] `apps/web/app/customers/page.tsx` を新規作成する:
+- [x] `apps/web/app/customers/page.tsx` を新規作成する:
   - server component（`'use client'` を記述しない）
   - `@/lib/composition-root` から `getCustomerRepository` を import する
   - `./customer-form` から `CustomerForm` を import する
@@ -165,13 +165,13 @@
 
 ## T-08: 全体検証
 
-- [ ] `pnpm -F web run check-types` が成功することを確認する
-- [ ] `pnpm -F web run test` で全テストが pass することを確認する
-- [ ] `pnpm -F web run build`（`next build`）が成功することを確認する
-- [ ] `pnpm -r --if-present run check-types && pnpm -r --if-present run test && pnpm -r --if-present run build` が green であることを確認する（他パッケージへの影響がない）
-- [ ] `grep -E '"drizzle-orm"' apps/web/package.json` が 0 件であることを確認する
-- [ ] `apps/web/package.json` に `@koma/crm` と `zod` が `dependencies` に、`vitest` が `devDependencies` に、`test` スクリプトが存在することを確認する
-- [ ] composition root 内で `createInMemoryCustomerRepository` の呼び出しが 1 箇所のみであることを確認する
+- [x] `pnpm -F web run check-types` が成功することを確認する
+- [x] `pnpm -F web run test` で全テストが pass することを確認する
+- [x] `pnpm -F web run build`（`next build`）が成功することを確認する
+- [x] `pnpm -r --if-present run check-types && pnpm -r --if-present run test && pnpm -r --if-present run build` が green であることを確認する（他パッケージへの影響がない）
+- [x] `grep -E '"drizzle-orm"' apps/web/package.json` が 0 件であることを確認する
+- [x] `apps/web/package.json` に `@koma/crm` と `zod` が `dependencies` に、`vitest` が `devDependencies` に、`test` スクリプトが存在することを確認する
+- [x] composition root 内で `createInMemoryCustomerRepository` の呼び出しが 1 箇所のみであることを確認する
 
 **Acceptance Criteria**:
 - 全受け入れ基準が green:
