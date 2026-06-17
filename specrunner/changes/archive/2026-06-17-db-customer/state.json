@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "3c97318c-276c-4316-8b98-0dd279c15cbd",
   "createdAt": "2026-06-17T13:09:25.368Z",
-  "updatedAt": "2026-06-17T13:48:45.120Z",
+  "updatedAt": "2026-06-17T13:51:52.245Z",
   "request": {
     "title": "packages/db を新設し、Drizzle で CustomerRepository を実装する（pglite テスト）",
     "type": "new-feature",
@@ -13,7 +13,7 @@
     "name": "koma"
   },
   "step": "pr-create",
-  "status": "awaiting-archive",
+  "status": "archived",
   "branch": "feat/db-customer-3c97318c",
   "error": null,
   "pipelineId": "standard",
@@ -24,7 +24,7 @@
     "createdAt": "2026-06-17T13:48:45.107Z"
   },
   "_journal": {
-    "historyCount": 45,
+    "historyCount": 46,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
