@@ -2,9 +2,9 @@
 
 ## T-01: apps/web に @koma/catalog 依存を追加する
 
-- [ ] `apps/web/package.json` の `dependencies` に `"@koma/catalog": "workspace:*"` を追加する
-- [ ] `pnpm install` を実行してロックファイルを更新する
-- [ ] `drizzle-orm` が `apps/web/package.json` に含まれていないことを確認する
+- [x] `apps/web/package.json` の `dependencies` に `"@koma/catalog": "workspace:*"` を追加する
+- [x] `pnpm install` を実行してロックファイルを更新する
+- [x] `drizzle-orm` が `apps/web/package.json` に含まれていないことを確認する
 
 **Acceptance Criteria**:
 - `apps/web/package.json` の `dependencies` に `"@koma/catalog": "workspace:*"` が存在する
@@ -13,9 +13,9 @@
 
 ## T-02: composition-root.ts に getServiceRepository を追加する
 
-- [ ] `apps/web/lib/composition-root.ts` に `import type { ServiceRepository } from '@koma/catalog'` と `import { createInMemoryServiceRepository } from '@koma/catalog'` を追加する
-- [ ] `globalForApp` の型拡張に `serviceRepository?: ServiceRepository` を追加する
-- [ ] `getCustomerRepository` / `getResourceRepository` と同じ `globalThis` lazy singleton パターンで `getServiceRepository()` 関数を実装・export する
+- [x] `apps/web/lib/composition-root.ts` に `import type { ServiceRepository } from '@koma/catalog'` と `import { createInMemoryServiceRepository } from '@koma/catalog'` を追加する
+- [x] `globalForApp` の型拡張に `serviceRepository?: ServiceRepository` を追加する
+- [x] `getCustomerRepository` / `getResourceRepository` と同じ `globalThis` lazy singleton パターンで `getServiceRepository()` 関数を実装・export する
 
 **Acceptance Criteria**:
 - `getServiceRepository()` を複数回呼んでも同一インスタンス（`===`）が返る
@@ -24,14 +24,14 @@
 
 ## T-03: parse-service-input.ts を作成する
 
-- [ ] `apps/web/lib/parse-service-input.ts` を新規作成する
-- [ ] `ParseSuccess = { ok: true; service: Service }` / `ParseFailure = { ok: false; errors: Record<string, string[]> }` / `ParseServiceInputResult = ParseSuccess | ParseFailure` の型を定義する
-- [ ] `zod/v4/mini` で `serviceSchema` を定義する:
+- [x] `apps/web/lib/parse-service-input.ts` を新規作成する
+- [x] `ParseSuccess = { ok: true; service: Service }` / `ParseFailure = { ok: false; errors: Record<string, string[]> }` / `ParseServiceInputResult = ParseSuccess | ParseFailure` の型を定義する
+- [x] `zod/v4/mini` で `serviceSchema` を定義する:
   - `name`: `z.string()` + `z.trim()` + `z.minLength(1, 'メニュー名は必須です')`
   - `durationMinutes`: `z.string()` — スキーマ段階では文字列として受け取る
   - `priceYen`: `z.string()` — スキーマ段階では文字列として受け取る
   - `resourceKinds`: `z.optional(z.string())` — カンマ区切り文字列
-- [ ] `parseServiceInput(raw: unknown): ParseServiceInputResult` 関数を実装する:
+- [x] `parseServiceInput(raw: unknown): ParseServiceInputResult` 関数を実装する:
   1. `serviceSchema.safeParse(raw)` でバリデーション
   2. 失敗時: `parse-resource-input.ts` と同じフィールド別エラー集約ロジックで `{ ok: false, errors }` を返す
   3. 成功後、`durationMinutes` 文字列を `Number()` で数値変換。`NaN` / `!Number.isInteger` / `< 1` の場合は `{ ok: false, errors: { durationMinutes: ['所要時間は 1 以上の整数を入力してください'] } }` を返す
@@ -52,8 +52,8 @@
 
 ## T-04: parse-service-input.test.ts を作成する
 
-- [ ] `apps/web/lib/parse-service-input.test.ts` を新規作成する
-- [ ] `parse-resource-input.test.ts` と同じ構造で以下のテストケースを記述する:
+- [x] `apps/web/lib/parse-service-input.test.ts` を新規作成する
+- [x] `parse-resource-input.test.ts` と同じ構造で以下のテストケースを記述する:
   - **有効入力**:
     - 全フィールド指定で `ok: true` と妥当な `Service` を返す（`name`, `duration`, `price`, `resourceKinds` が正しい）
     - `resourceKinds` 空文字で `ok: true` かつ `resourceKinds` が `[]` を返す
@@ -83,10 +83,10 @@
 
 ## T-05: server action createServiceAction を作成する
 
-- [ ] `apps/web/app/services/actions.ts` を新規作成する
-- [ ] ファイル先頭に `'use server'` directive を記述する
-- [ ] `ActionState` 型を定義する（`createResourceAction` と同じ `{ ok: true } | { ok: false; errors: Record<string, string[]> }`）
-- [ ] `createServiceAction(_prevState: ActionState | null, formData: FormData): Promise<ActionState>` を実装する:
+- [x] `apps/web/app/services/actions.ts` を新規作成する
+- [x] ファイル先頭に `'use server'` directive を記述する
+- [x] `ActionState` 型を定義する（`createResourceAction` と同じ `{ ok: true } | { ok: false; errors: Record<string, string[]> }`）
+- [x] `createServiceAction(_prevState: ActionState | null, formData: FormData): Promise<ActionState>` を実装する:
   1. `formData` から `name`, `durationMinutes`, `priceYen`, `resourceKinds` を取得
   2. `parseServiceInput(raw)` を呼び出す
   3. `result.ok === false` なら `{ ok: false, errors: result.errors }` を返す
@@ -99,8 +99,8 @@
 
 ## T-06: actions.test.ts を作成する
 
-- [ ] `apps/web/app/services/actions.test.ts` を新規作成する
-- [ ] `resources/actions.test.ts` と同じ構造で以下のテストケースを記述する:
+- [x] `apps/web/app/services/actions.test.ts` を新規作成する
+- [x] `resources/actions.test.ts` と同じ構造で以下のテストケースを記述する:
   - `vi.mock('next/cache', ...)` で `revalidatePath` をモック
   - `vi.mock('@/lib/composition-root', ...)` で `getServiceRepository` をモック（テスト毎に `createInMemoryServiceRepository` で新インスタンス生成）
   - **有効なフォーム送信で Service が保存される**: `FormData` に有効値 → `ok: true`、`repo.list()` に 1 件
@@ -113,18 +113,18 @@
 
 ## T-07: service-form.tsx クライアントコンポーネントを作成する
 
-- [ ] `apps/web/app/services/service-form.tsx` を新規作成する
-- [ ] ファイル先頭に `'use client'` directive を記述する
-- [ ] `useActionState` で `createServiceAction` をバインドする（`resource-form.tsx` と同じパターン）
-- [ ] フォームフィールドを実装する:
+- [x] `apps/web/app/services/service-form.tsx` を新規作成する
+- [x] ファイル先頭に `'use client'` directive を記述する
+- [x] `useActionState` で `createServiceAction` をバインドする（`resource-form.tsx` と同じパターン）
+- [x] フォームフィールドを実装する:
   - `name`（テキスト入力、必須、ラベル「メニュー名（必須）」）
   - `durationMinutes`（数値入力、必須、ラベル「所要時間（分）（必須）」、`min="1"` `step="1"`）
   - `priceYen`（数値入力、必須、ラベル「料金（円）（必須）」、`min="0"` `step="1"`）
   - `resourceKinds`（テキスト入力、任意、ラベル「対応リソース種別（カンマ区切り）」）
-- [ ] 各フィールド下にフィールド別エラーメッセージを表示する（`resource-form.tsx` と同じパターン）
-- [ ] フォーム全体エラー（`errors._form`）を表示する
-- [ ] 成功時メッセージ「登録が完了しました。」を表示する
-- [ ] 送信ボタンの `isPending` 制御（「登録中...」/「登録」）
+- [x] 各フィールド下にフィールド別エラーメッセージを表示する（`resource-form.tsx` と同じパターン）
+- [x] フォーム全体エラー（`errors._form`）を表示する
+- [x] 成功時メッセージ「登録が完了しました。」を表示する
+- [x] 送信ボタンの `isPending` 制御（「登録中...」/「登録」）
 
 **Acceptance Criteria**:
 - `'use client'` directive がファイル先頭にある
@@ -136,17 +136,17 @@
 
 ## T-08: page.tsx サーバーコンポーネントを作成する
 
-- [ ] `apps/web/app/services/page.tsx` を新規作成する
-- [ ] `getServiceRepository` から `list()` を呼び出しサービス一覧を取得する
-- [ ] `@koma/shared` から `toMinutes` を import し、`Duration` → 分表示に使用する
-- [ ] `ServiceForm` コンポーネントを配置する
-- [ ] 一覧セクションを実装する:
+- [x] `apps/web/app/services/page.tsx` を新規作成する
+- [x] `getServiceRepository` から `list()` を呼び出しサービス一覧を取得する
+- [x] `@koma/shared` から `toMinutes` を import し、`Duration` → 分表示に使用する
+- [x] `ServiceForm` コンポーネントを配置する
+- [x] 一覧セクションを実装する:
   - サービスが 0 件の場合「サービスがありません。」を表示
   - サービスがある場合、テーブルで `メニュー名` / `所要時間` / `料金` / `対応リソース種別` カラムを表示
   - 所要時間は `toMinutes(service.duration)` + `分` で表示
   - 料金は `service.price.amount.toLocaleString('ja-JP')` + `円` で表示
   - `resourceKinds` は `join(', ')` で表示（空配列は空欄）
-- [ ] `resources/page.tsx` と同じ構造（`<main>` > `<h1>` + `<Form>` + `<section>` > `<h2>` + table）
+- [x] `resources/page.tsx` と同じ構造（`<main>` > `<h1>` + `<Form>` + `<section>` > `<h2>` + table）
 
 **Acceptance Criteria**:
 - `page.tsx` が server component である（`'use client'` がない）
@@ -157,9 +157,9 @@
 
 ## T-09: ビルド・型チェック・テスト全体確認
 
-- [ ] `pnpm -r --if-present run check-types` が成功する
-- [ ] `pnpm -r --if-present run test` が成功する
-- [ ] `pnpm -r --if-present run build` が成功する
+- [x] `pnpm -r --if-present run check-types` が成功する
+- [x] `pnpm -r --if-present run test` が成功する
+- [x] `pnpm -r --if-present run build` が成功する
 
 **Acceptance Criteria**:
 - `pnpm -r --if-present run check-types && pnpm -r --if-present run test && pnpm -r --if-present run build` が green

@@ -10,8 +10,10 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@koma/catalog": "workspace:*",
     "@koma/crm": "workspace:*",
     "@koma/resource": "workspace:*",
+    "@koma/shared": "workspace:*",
     "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
