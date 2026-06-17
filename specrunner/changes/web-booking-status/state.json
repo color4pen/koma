@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "686cf220-8b2e-4117-8340-dd5dd9bd7c15",
   "createdAt": "2026-06-17T17:54:52.977Z",
-  "updatedAt": "2026-06-17T18:07:52.501Z",
+  "updatedAt": "2026-06-17T18:12:19.772Z",
   "request": {
     "title": "apps/web の予約一覧にステータス操作（確定 / キャンセル / 完了 / 来店なし）を追加する",
     "type": "new-feature",
@@ -12,18 +12,20 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "implementer",
+  "step": "code-review",
   "status": "running",
   "branch": "feat/web-booking-status-686cf220",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 16,
+    "historyCount": 25,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
       "spec-review": 1,
-      "test-case-gen": 1
+      "test-case-gen": 1,
+      "implementer": 1,
+      "verification": 1
     }
   }
 }
