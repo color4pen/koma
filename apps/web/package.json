@@ -13,6 +13,7 @@
     "@koma/catalog": "workspace:*",
     "@koma/crm": "workspace:*",
     "@koma/resource": "workspace:*",
+    "@koma/scheduling": "workspace:*",
     "@koma/shared": "workspace:*",
     "next": "^15.1.0",
     "react": "^19.0.0",

@@ -2,9 +2,9 @@
 
 ## T-01: apps/web に @koma/scheduling 依存を追加する
 
-- [ ] `apps/web/package.json` の `dependencies` に `"@koma/scheduling": "workspace:*"` を追加する
-- [ ] `pnpm install` を実行してロックファイルを更新する
-- [ ] `drizzle-orm` が `apps/web/package.json` に含まれていないことを確認する
+- [x] `apps/web/package.json` の `dependencies` に `"@koma/scheduling": "workspace:*"` を追加する
+- [x] `pnpm install` を実行してロックファイルを更新する
+- [x] `drizzle-orm` が `apps/web/package.json` に含まれていないことを確認する
 
 **Acceptance Criteria**:
 - `apps/web/package.json` の `dependencies` に `"@koma/scheduling": "workspace:*"` が存在する
@@ -13,9 +13,9 @@
 
 ## T-02: composition-root.ts に getBookingRepository を追加する
 
-- [ ] `apps/web/lib/composition-root.ts` に `import type { BookingRepository } from '@koma/scheduling'` と `import { createInMemoryBookingRepository } from '@koma/scheduling'` を追加する
-- [ ] `globalForApp` の型拡張に `bookingRepository?: BookingRepository` を追加する
-- [ ] `getCustomerRepository` / `getResourceRepository` / `getServiceRepository` と同じ `globalThis` lazy singleton パターンで `getBookingRepository()` 関数を実装・export する
+- [x] `apps/web/lib/composition-root.ts` に `import type { BookingRepository } from '@koma/scheduling'` と `import { createInMemoryBookingRepository } from '@koma/scheduling'` を追加する
+- [x] `globalForApp` の型拡張に `bookingRepository?: BookingRepository` を追加する
+- [x] `getCustomerRepository` / `getResourceRepository` / `getServiceRepository` と同じ `globalThis` lazy singleton パターンで `getBookingRepository()` 関数を実装・export する
 
 **Acceptance Criteria**:
 - `getBookingRepository()` を複数回呼んでも同一インスタンス（`===`）が返る
@@ -24,14 +24,14 @@
 
 ## T-03: parse-booking-input.ts を作成する
 
-- [ ] `apps/web/lib/parse-booking-input.ts` を新規作成する
-- [ ] `ParseBookingInputSuccess = { ok: true; input: { customerId: string; serviceId: string; resourceId: string; startMillis: number } }` / `ParseBookingInputFailure = { ok: false; errors: Record<string, string[]> }` / `ParseBookingInputResult = ParseBookingInputSuccess | ParseBookingInputFailure` の型を定義・export する
-- [ ] `zod/v4/mini` で `bookingInputSchema` を定義する:
+- [x] `apps/web/lib/parse-booking-input.ts` を新規作成する
+- [x] `ParseBookingInputSuccess = { ok: true; input: { customerId: string; serviceId: string; resourceId: string; startMillis: number } }` / `ParseBookingInputFailure = { ok: false; errors: Record<string, string[]> }` / `ParseBookingInputResult = ParseBookingInputSuccess | ParseBookingInputFailure` の型を定義・export する
+- [x] `zod/v4/mini` で `bookingInputSchema` を定義する:
   - `customerId`: `z.string()` + `z.minLength(1, '顧客を選択してください')`
   - `serviceId`: `z.string()` + `z.minLength(1, 'サービスを選択してください')`
   - `resourceId`: `z.string()` + `z.minLength(1, 'リソースを選択してください')`
   - `startAt`: `z.string()` + `z.minLength(1, '開始日時を入力してください')`
-- [ ] `parseBookingInput(raw: unknown): ParseBookingInputResult` 関数を実装・export する:
+- [x] `parseBookingInput(raw: unknown): ParseBookingInputResult` 関数を実装・export する:
   1. `bookingInputSchema.safeParse(raw)` でバリデーション
   2. 失敗時: 既存の parse 関数と同じフィールド別エラー集約ロジックで `{ ok: false, errors }` を返す
   3. 成功後、`startAt` を `new Date(startAt).getTime()` で epoch ミリ秒に変換。`Number.isNaN(startMillis)` の場合は `{ ok: false, errors: { startAt: ['有効な日時を入力してください'] } }` を返す
@@ -46,8 +46,8 @@
 
 ## T-04: parse-booking-input.test.ts を作成する
 
-- [ ] `apps/web/lib/parse-booking-input.test.ts` を新規作成する
-- [ ] 以下のテストケースを記述する:
+- [x] `apps/web/lib/parse-booking-input.test.ts` を新規作成する
+- [x] 以下のテストケースを記述する:
   - **有効入力**:
     - 全フィールド有効で `ok: true` かつ `input.customerId` / `input.serviceId` / `input.resourceId` / `input.startMillis` が正しい
   - **customerId バリデーション**:
@@ -69,11 +69,11 @@
 
 ## T-05: create-booking-use-case.ts を作成する
 
-- [ ] `apps/web/lib/create-booking-use-case.ts` を新規作成する
-- [ ] `CreateBookingDeps` 型を定義する: `{ serviceRepo: ServiceRepository; resourceRepo: ResourceRepository; bookingRepo: BookingRepository }`（各型は `@koma/catalog` / `@koma/resource` / `@koma/scheduling` から import）
-- [ ] `CreateBookingInput` 型を定義する: `{ customerId: Id<'Customer'>; serviceId: Id<'Service'>; resourceId: Id<'Resource'>; startMillis: number }`
-- [ ] `CreateBookingResult` 型を定義する: `{ ok: true; booking: Booking } | { ok: false; reason: 'service-not-found' | 'resource-not-found' | 'no-capacity' }`
-- [ ] `createBookingUseCase(deps: CreateBookingDeps, input: CreateBookingInput): Promise<CreateBookingResult>` を実装・export する:
+- [x] `apps/web/lib/create-booking-use-case.ts` を新規作成する
+- [x] `CreateBookingDeps` 型を定義する: `{ serviceRepo: ServiceRepository; resourceRepo: ResourceRepository; bookingRepo: BookingRepository }`（各型は `@koma/catalog` / `@koma/resource` / `@koma/scheduling` から import）
+- [x] `CreateBookingInput` 型を定義する: `{ customerId: Id<'Customer'>; serviceId: Id<'Service'>; resourceId: Id<'Resource'>; startMillis: number }`
+- [x] `CreateBookingResult` 型を定義する: `{ ok: true; booking: Booking } | { ok: false; reason: 'service-not-found' | 'resource-not-found' | 'no-capacity' }`
+- [x] `createBookingUseCase(deps: CreateBookingDeps, input: CreateBookingInput): Promise<CreateBookingResult>` を実装・export する:
   1. `deps.serviceRepo.findById(input.serviceId)` — `null` なら `{ ok: false, reason: 'service-not-found' }` を返す。`service.duration` を取得する
   2. `deps.resourceRepo.findById(input.resourceId)` — `null` なら `{ ok: false, reason: 'resource-not-found' }` を返す。`resource.capacity` を取得する
   3. `createTimeRange(input.startMillis, input.startMillis + service.duration.milliseconds)` で `slot` を構築する（`@koma/shared` から import）
@@ -90,10 +90,10 @@
 
 ## T-06: create-booking-use-case.test.ts を作成する
 
-- [ ] `apps/web/lib/create-booking-use-case.test.ts` を新規作成する
-- [ ] テストの deps として `createInMemoryServiceRepository`（`@koma/catalog`）/ `createInMemoryResourceRepository`（`@koma/resource`）/ `createInMemoryBookingRepository`（`@koma/scheduling`）を使用する
-- [ ] テスト用ヘルパー: `createService`（`@koma/catalog`）で `duration: ofMinutes(60)` のサービスを、`createResource`（`@koma/resource`）で `capacity` 指定のリソースを、それぞれ作成して repo に save する
-- [ ] 以下のテストケースを記述する:
+- [x] `apps/web/lib/create-booking-use-case.test.ts` を新規作成する
+- [x] テストの deps として `createInMemoryServiceRepository`（`@koma/catalog`）/ `createInMemoryResourceRepository`（`@koma/resource`）/ `createInMemoryBookingRepository`（`@koma/scheduling`）を使用する
+- [x] テスト用ヘルパー: `createService`（`@koma/catalog`）で `duration: ofMinutes(60)` のサービスを、`createResource`（`@koma/resource`）で `capacity` 指定のリソースを、それぞれ作成して repo に save する
+- [x] 以下のテストケースを記述する:
   - **正常系: 有効な入力で予約が作成される**
     - `capacity: 1` の Resource、60 分の Service を作成して repo に save
     - `createBookingUseCase` 呼び出し → `{ ok: true, booking }`
@@ -123,10 +123,10 @@
 
 ## T-07: server action createBookingAction を作成する
 
-- [ ] `apps/web/app/bookings/actions.ts` を新規作成する
-- [ ] ファイル先頭に `'use server'` directive を記述する
-- [ ] `ActionState` 型を定義する（既存 action と同じ `{ ok: true } | { ok: false; errors: Record<string, string[]> }`）
-- [ ] `createBookingAction(_prevState: ActionState | null, formData: FormData): Promise<ActionState>` を実装する:
+- [x] `apps/web/app/bookings/actions.ts` を新規作成する
+- [x] ファイル先頭に `'use server'` directive を記述する
+- [x] `ActionState` 型を定義する（既存 action と同じ `{ ok: true } | { ok: false; errors: Record<string, string[]> }`）
+- [x] `createBookingAction(_prevState: ActionState | null, formData: FormData): Promise<ActionState>` を実装する:
   1. `formData` から `customerId`, `serviceId`, `resourceId`, `startAt` を取得し `raw` オブジェクトを構築
   2. `parseBookingInput(raw)` を呼び出す。`ok: false` なら `{ ok: false, errors: result.errors }` を返す
   3. `composition-root` から `getServiceRepository()` / `getResourceRepository()` / `getBookingRepository()` を取得し `deps` を構築
@@ -144,8 +144,8 @@
 
 ## T-08: actions.test.ts（bookings）を作成する
 
-- [ ] `apps/web/app/bookings/actions.test.ts` を新規作成する
-- [ ] 既存の `services/actions.test.ts` と同じ構造で以下を記述する:
+- [x] `apps/web/app/bookings/actions.test.ts` を新規作成する
+- [x] 既存の `services/actions.test.ts` と同じ構造で以下を記述する:
   - `vi.mock('next/cache', ...)` で `revalidatePath` をモック
   - `vi.mock('@/lib/composition-root', ...)` で `getBookingRepository` / `getServiceRepository` / `getResourceRepository` をモック（テスト毎に in-memory repo を新インスタンス生成）
   - テスト前に Service / Resource を repo に save しておく
@@ -160,19 +160,19 @@
 
 ## T-09: booking-form.tsx クライアントコンポーネントを作成する
 
-- [ ] `apps/web/app/bookings/booking-form.tsx` を新規作成する
-- [ ] ファイル先頭に `'use client'` directive を記述する
-- [ ] Props として `customers: Array<{ id: string; name: string }>`, `services: Array<{ id: string; name: string }>`, `resources: Array<{ id: string; name: string }>` を受け取る
-- [ ] `useActionState` で `createBookingAction` をバインドする（既存 form と同じパターン）
-- [ ] フォームフィールドを実装する:
+- [x] `apps/web/app/bookings/booking-form.tsx` を新規作成する
+- [x] ファイル先頭に `'use client'` directive を記述する
+- [x] Props として `customers: Array<{ id: string; name: string }>`, `services: Array<{ id: string; name: string }>`, `resources: Array<{ id: string; name: string }>` を受け取る
+- [x] `useActionState` で `createBookingAction` をバインドする（既存 form と同じパターン）
+- [x] フォームフィールドを実装する:
   - `customerId`（`<select>`、ラベル「顧客（必須）」、`customers` props から `<option>` を生成、先頭に空の選択肢）
   - `serviceId`（`<select>`、ラベル「サービス（必須）」、`services` props から `<option>` を生成、先頭に空の選択肢）
   - `resourceId`（`<select>`、ラベル「リソース（必須）」、`resources` props から `<option>` を生成、先頭に空の選択肢）
   - `startAt`（`<input type="datetime-local">`、ラベル「開始日時（必須）」、`required`）
-- [ ] 各フィールド下にフィールド別エラーメッセージを表示する（既存 form と同じパターン）
-- [ ] フォーム全体エラー（`errors._form`）を表示する
-- [ ] 成功時メッセージ「予約が完了しました。」を表示する
-- [ ] 送信ボタンの `isPending` 制御（「予約中...」/「予約する」）
+- [x] 各フィールド下にフィールド別エラーメッセージを表示する（既存 form と同じパターン）
+- [x] フォーム全体エラー（`errors._form`）を表示する
+- [x] 成功時メッセージ「予約が完了しました。」を表示する
+- [x] 送信ボタンの `isPending` 制御（「予約中...」/「予約する」）
 
 **Acceptance Criteria**:
 - `'use client'` directive がファイル先頭にある
@@ -183,20 +183,20 @@
 
 ## T-10: page.tsx サーバーコンポーネント（bookings）を作成する
 
-- [ ] `apps/web/app/bookings/page.tsx` を新規作成する
-- [ ] `getBookingRepository` / `getCustomerRepository` / `getServiceRepository` / `getResourceRepository` を `composition-root` から import する
-- [ ] server component として実装する（`'use client'` なし）
-- [ ] 予約一覧表示を実装する:
+- [x] `apps/web/app/bookings/page.tsx` を新規作成する
+- [x] `getBookingRepository` / `getCustomerRepository` / `getServiceRepository` / `getResourceRepository` を `composition-root` から import する
+- [x] server component として実装する（`'use client'` なし）
+- [x] 予約一覧表示を実装する:
   - `bookingRepo.list()` で全予約を取得する
   - `customerRepo.list()` / `serviceRepo.list()` / `resourceRepo.list()` で全エンティティを取得し、`id → entity` の Map を構築する
   - 予約が 0 件の場合「予約がありません。」を表示する
   - 予約がある場合、テーブルで「顧客」「サービス」「リソース」「開始日時」「ステータス」カラムを表示する
   - 顧客名・サービス名・リソース名は Map から解決する（見つからない場合は「不明」等のフォールバック）
   - 開始日時は `new Date(booking.slot.start).toLocaleString('ja-JP')` で表示する
-- [ ] 作成フォーム用データを取得する:
+- [x] 作成フォーム用データを取得する:
   - `customerRepo.list()` / `serviceRepo.list()` / `resourceRepo.list()` の結果から `{ id, name }` の配列を作成し、`BookingForm` に props として渡す
-- [ ] `BookingForm` コンポーネントを配置する
-- [ ] ページ構造は `<main>` > `<h1>予約管理</h1>` + `<BookingForm>` + `<section>` > `<h2>予約一覧</h2>` + table（既存ページと同じ構造）
+- [x] `BookingForm` コンポーネントを配置する
+- [x] ページ構造は `<main>` > `<h1>予約管理</h1>` + `<BookingForm>` + `<section>` > `<h2>予約一覧</h2>` + table（既存ページと同じ構造）
 
 **Acceptance Criteria**:
 - `page.tsx` が server component である（`'use client'` がない）
@@ -208,9 +208,9 @@
 
 ## T-11: ビルド・型チェック・テスト全体確認
 
-- [ ] `pnpm -r --if-present run check-types` が成功する
-- [ ] `pnpm -r --if-present run test` が成功する
-- [ ] `pnpm -r --if-present run build` が成功する
+- [x] `pnpm -r --if-present run check-types` が成功する
+- [x] `pnpm -r --if-present run test` が成功する
+- [x] `pnpm -r --if-present run build` が成功する
 
 **Acceptance Criteria**:
 - `pnpm -r --if-present run check-types && pnpm -r --if-present run test && pnpm -r --if-present run build` が green
