@@ -20,12 +20,18 @@ importers:
 
   apps/web:
     dependencies:
+      '@koma/catalog':
+        specifier: workspace:*
+        version: link:../../packages/catalog
       '@koma/crm':
         specifier: workspace:*
         version: link:../../packages/crm
       '@koma/resource':
         specifier: workspace:*
         version: link:../../packages/resource
+      '@koma/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       next:
         specifier: ^15.1.0
         version: 15.5.19(@babel/core@7.29.7)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
