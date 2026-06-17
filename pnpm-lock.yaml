@@ -113,9 +113,15 @@ importers:
 
   packages/db:
     dependencies:
+      '@koma/catalog':
+        specifier: workspace:*
+        version: link:../catalog
       '@koma/crm':
         specifier: workspace:*
         version: link:../crm
+      '@koma/resource':
+        specifier: workspace:*
+        version: link:../resource
       '@koma/shared':
         specifier: workspace:*
         version: link:../shared

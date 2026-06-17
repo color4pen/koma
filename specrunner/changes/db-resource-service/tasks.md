@@ -2,9 +2,9 @@
 
 ## T-01: packages/db に @koma/resource と @koma/catalog の依存を追加する
 
-- [ ] `packages/db/package.json` の `dependencies` に `"@koma/resource": "workspace:*"` を追加する
-- [ ] `packages/db/package.json` の `dependencies` に `"@koma/catalog": "workspace:*"` を追加する
-- [ ] `pnpm install` を実行して lockfile を更新する
+- [x] `packages/db/package.json` の `dependencies` に `"@koma/resource": "workspace:*"` を追加する
+- [x] `packages/db/package.json` の `dependencies` に `"@koma/catalog": "workspace:*"` を追加する
+- [x] `pnpm install` を実行して lockfile を更新する
 
 **Acceptance Criteria**:
 - `packages/db/package.json` の dependencies に `@koma/resource` と `@koma/catalog` が `workspace:*` で含まれる
@@ -13,13 +13,13 @@
 
 ## T-02: Resource 用の Drizzle schema を定義する
 
-- [ ] `packages/db/src/schema/resource.ts` を作成する
-- [ ] `pgTable('resources', ...)` で以下のカラムを定義する:
+- [x] `packages/db/src/schema/resource.ts` を作成する
+- [x] `pgTable('resources', ...)` で以下のカラムを定義する:
   - `id`: `text('id').primaryKey()`
   - `name`: `text('name').notNull()`
   - `kind`: `text('kind').notNull()`
   - `capacity`: `integer('capacity').notNull()`
-- [ ] `ResourceRow` 型（`typeof resources.$inferSelect`）を export する
+- [x] `ResourceRow` 型（`typeof resources.$inferSelect`）を export する
 
 **Acceptance Criteria**:
 - `packages/db/src/schema/resource.ts` が存在し、`resources` テーブルと `ResourceRow` 型を export する
@@ -27,15 +27,15 @@
 
 ## T-03: Service 用の Drizzle schema を定義する
 
-- [ ] `packages/db/src/schema/service.ts` を作成する
-- [ ] `pgTable('services', ...)` で以下のカラムを定義する:
+- [x] `packages/db/src/schema/service.ts` を作成する
+- [x] `pgTable('services', ...)` で以下のカラムを定義する:
   - `id`: `text('id').primaryKey()`
   - `name`: `text('name').notNull()`
   - `duration_ms`: `integer('duration_ms').notNull()`
   - `price_amount`: `integer('price_amount').notNull()`
   - `price_currency`: `text('price_currency').notNull()`
   - `resource_kinds`: `jsonb('resource_kinds').notNull()`
-- [ ] `ServiceRow` 型（`typeof services.$inferSelect`）を export する
+- [x] `ServiceRow` 型（`typeof services.$inferSelect`）を export する
 
 **Acceptance Criteria**:
 - `packages/db/src/schema/service.ts` が存在し、`services` テーブルと `ServiceRow` 型を export する
@@ -43,13 +43,13 @@
 
 ## T-04: DrizzleResourceRepository を実装する
 
-- [ ] `packages/db/src/drizzle-resource-repository.ts` を作成する
-- [ ] `rowToResource` 関数を実装する: `resources.$inferSelect` の行を受け取り、`parseId` で id をパースし、`createResource({ id, name, kind, capacity })` で `Resource` を再構成する
-- [ ] `createDrizzleResourceRepository(db: DrizzleClient): ResourceRepository` ファクトリ関数を実装する:
+- [x] `packages/db/src/drizzle-resource-repository.ts` を作成する
+- [x] `rowToResource` 関数を実装する: `resources.$inferSelect` の行を受け取り、`parseId` で id をパースし、`createResource({ id, name, kind, capacity })` で `Resource` を再構成する
+- [x] `createDrizzleResourceRepository(db: DrizzleClient): ResourceRepository` ファクトリ関数を実装する:
   - `save`: `db.insert(resources).values(...).onConflictDoUpdate({ target: resources.id, set: { name, kind, capacity } })` で upsert
   - `findById`: `db.select().from(resources).where(eq(resources.id, id))` で取得し、結果を `rowToResource` で再構成。なければ `null`
   - `list`: `db.select().from(resources)` で全件取得し、`rows.map(rowToResource)` で再構成
-- [ ] import: `eq` from `drizzle-orm`、`type ResourceRepository` / `type Resource` / `createResource` from `@koma/resource`、`parseId` from `@koma/shared`、`resources` from `./schema/resource.js`、`type DrizzleClient` from `./client.js`
+- [x] import: `eq` from `drizzle-orm`、`type ResourceRepository` / `type Resource` / `createResource` from `@koma/resource`、`parseId` from `@koma/shared`、`resources` from `./schema/resource.js`、`type DrizzleClient` from `./client.js`
 
 **Acceptance Criteria**:
 - `createDrizzleResourceRepository` が `ResourceRepository` 型を返す（型チェック通過）
@@ -57,13 +57,13 @@
 
 ## T-05: DrizzleServiceRepository を実装する
 
-- [ ] `packages/db/src/drizzle-service-repository.ts` を作成する
-- [ ] `rowToService` 関数を実装する: `services.$inferSelect` の行を受け取り、`parseId` で id をパースし、`ofMilliseconds(row.duration_ms)` で Duration を、`createMoney(row.price_amount, row.price_currency as Currency)` で Money を再構成し、`createService({ id, name, duration, price, resourceKinds: row.resource_kinds as string[] })` で `Service` を再構成する
-- [ ] `createDrizzleServiceRepository(db: DrizzleClient): ServiceRepository` ファクトリ関数を実装する:
+- [x] `packages/db/src/drizzle-service-repository.ts` を作成する
+- [x] `rowToService` 関数を実装する: `services.$inferSelect` の行を受け取り、`parseId` で id をパースし、`ofMilliseconds(row.duration_ms)` で Duration を、`createMoney(row.price_amount, row.price_currency as Currency)` で Money を再構成し、`createService({ id, name, duration, price, resourceKinds: row.resource_kinds as string[] })` で `Service` を再構成する
+- [x] `createDrizzleServiceRepository(db: DrizzleClient): ServiceRepository` ファクトリ関数を実装する:
   - `save`: `db.insert(services).values({ id, name, duration_ms: service.duration.milliseconds, price_amount: service.price.amount, price_currency: service.price.currency, resource_kinds: [...service.resourceKinds] }).onConflictDoUpdate(...)` で upsert
   - `findById`: `db.select().from(services).where(eq(services.id, id))` で取得し、`rowToService` で再構成。なければ `null`
   - `list`: `db.select().from(services)` で全件取得し、`rows.map(rowToService)` で再構成
-- [ ] import: `eq` from `drizzle-orm`、`type ServiceRepository` / `type Service` / `createService` from `@koma/catalog`、`parseId` / `ofMilliseconds` / `createMoney` / `type Currency` from `@koma/shared`、`services` from `./schema/service.js`、`type DrizzleClient` from `./client.js`
+- [x] import: `eq` from `drizzle-orm`、`type ServiceRepository` / `type Service` / `createService` from `@koma/catalog`、`parseId` / `ofMilliseconds` / `createMoney` / `type Currency` from `@koma/shared`、`services` from `./schema/service.js`、`type DrizzleClient` from `./client.js`
 
 **Acceptance Criteria**:
 - `createDrizzleServiceRepository` が `ServiceRepository` 型を返す（型チェック通過）
@@ -71,8 +71,8 @@
 
 ## T-06: DrizzleResourceRepository の pglite 契約テストを作成する
 
-- [ ] `packages/db/src/drizzle-resource-repository.test.ts` を作成する
-- [ ] テスト先頭に `CREATE_RESOURCES_TABLE` SQL 文字列を定義する:
+- [x] `packages/db/src/drizzle-resource-repository.test.ts` を作成する
+- [x] テスト先頭に `CREATE_RESOURCES_TABLE` SQL 文字列を定義する:
   ```sql
   CREATE TABLE IF NOT EXISTS resources (
     id       TEXT PRIMARY KEY,
@@ -81,9 +81,9 @@
     capacity INTEGER NOT NULL
   )
   ```
-- [ ] `beforeEach` で `new PGlite()` → `exec(CREATE_RESOURCES_TABLE)` → `createDrizzleClient(pglite)` の隔離パターンを実装する
-- [ ] `afterEach` で `pglite.close()` を実装する
-- [ ] テストケース:
+- [x] `beforeEach` で `new PGlite()` → `exec(CREATE_RESOURCES_TABLE)` → `createDrizzleClient(pglite)` の隔離パターンを実装する
+- [x] `afterEach` で `pglite.close()` を実装する
+- [x] テストケース:
   1. `save` した Resource を `findById` で全フィールド一致で取得できる（`capacity` を非デフォルト値で検証）
   2. 未保存の id で `findById` すると `null` が返る
   3. 複数の Resource を `save` し、`list` が全件返す
@@ -96,8 +96,8 @@
 
 ## T-07: DrizzleServiceRepository の pglite 契約テストを作成する
 
-- [ ] `packages/db/src/drizzle-service-repository.test.ts` を作成する
-- [ ] テスト先頭に `CREATE_SERVICES_TABLE` SQL 文字列を定義する:
+- [x] `packages/db/src/drizzle-service-repository.test.ts` を作成する
+- [x] テスト先頭に `CREATE_SERVICES_TABLE` SQL 文字列を定義する:
   ```sql
   CREATE TABLE IF NOT EXISTS services (
     id              TEXT PRIMARY KEY,
@@ -108,9 +108,9 @@
     resource_kinds  JSONB NOT NULL DEFAULT '[]'::jsonb
   )
   ```
-- [ ] `beforeEach` で `new PGlite()` → `exec(CREATE_SERVICES_TABLE)` → `createDrizzleClient(pglite)` の隔離パターンを実装する
-- [ ] `afterEach` で `pglite.close()` を実装する
-- [ ] テストケース:
+- [x] `beforeEach` で `new PGlite()` → `exec(CREATE_SERVICES_TABLE)` → `createDrizzleClient(pglite)` の隔離パターンを実装する
+- [x] `afterEach` で `pglite.close()` を実装する
+- [x] テストケース:
   1. `save` した Service を `findById` で全フィールド一致で取得できる（`duration`, `price`, `resourceKinds` を含む）
   2. 未保存の id で `findById` すると `null` が返る
   3. 複数の Service を `save` し、`list` が全件返す
@@ -127,7 +127,7 @@
 
 ## T-08: packages/db の index.ts に新しい export を追加する
 
-- [ ] `packages/db/src/index.ts` に以下を追加する:
+- [x] `packages/db/src/index.ts` に以下を追加する:
   - `export { createDrizzleResourceRepository } from './drizzle-resource-repository.js';`
   - `export { createDrizzleServiceRepository } from './drizzle-service-repository.js';`
   - `export { resources } from './schema/resource.js';`
@@ -139,9 +139,9 @@
 
 ## T-09: 全体検証
 
-- [ ] `pnpm -F @koma/db run check-types` が成功する
-- [ ] `pnpm -F @koma/db run test` が成功する（customer / resource / service の全テスト pass）
-- [ ] `pnpm -r --if-present run check-types && pnpm -r --if-present run test` が green
+- [x] `pnpm -F @koma/db run check-types` が成功する
+- [x] `pnpm -F @koma/db run test` が成功する（customer / resource / service の全テスト pass）
+- [x] `pnpm -r --if-present run check-types && pnpm -r --if-present run test` が green
 
 **Acceptance Criteria**:
 - 上記 3 コマンドがすべてエラーなく完了する

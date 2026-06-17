@@ -11,7 +11,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@koma/catalog": "workspace:*",
     "@koma/crm": "workspace:*",
+    "@koma/resource": "workspace:*",
     "@koma/shared": "workspace:*",
     "drizzle-orm": "^0.38.3"
   },
