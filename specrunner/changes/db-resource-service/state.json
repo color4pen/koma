@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "bde218e1-d3bf-47cd-9b83-dc1e57eb5c7b",
   "createdAt": "2026-06-17T16:53:37.685Z",
-  "updatedAt": "2026-06-17T17:17:05.030Z",
+  "updatedAt": "2026-06-17T17:17:29.343Z",
   "request": {
     "title": "packages/db に Drizzle の ResourceRepository / ServiceRepository を実装する（pglite テスト）",
     "type": "new-feature",
@@ -12,13 +12,18 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "adr-gen",
-  "status": "running",
+  "step": "pr-create",
+  "status": "awaiting-archive",
   "branch": "feat/db-resource-service-bde218e1",
   "error": null,
   "pipelineId": "standard",
+  "pullRequest": {
+    "url": "https://github.com/color4pen/koma/pull/18",
+    "number": 18,
+    "createdAt": "2026-06-17T17:17:29.323Z"
+  },
   "_journal": {
-    "historyCount": 34,
+    "historyCount": 39,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
@@ -27,7 +32,9 @@
       "implementer": 1,
       "verification": 1,
       "code-review": 1,
-      "conformance": 1
+      "conformance": 1,
+      "adr-gen": 1,
+      "pr-create": 1
     }
   }
 }
