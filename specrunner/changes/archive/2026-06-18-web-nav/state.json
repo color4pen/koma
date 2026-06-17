@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "ae42cf71-709a-44d4-8d51-6b72e4183a4d",
   "createdAt": "2026-06-17T18:23:06.109Z",
-  "updatedAt": "2026-06-17T18:45:16.419Z",
+  "updatedAt": "2026-06-17T18:47:12.831Z",
   "request": {
     "title": "apps/web に管理ナビゲーションとダッシュボード home を追加する",
     "type": "new-feature",
@@ -13,7 +13,7 @@
     "name": "koma"
   },
   "step": "pr-create",
-  "status": "awaiting-archive",
+  "status": "archived",
   "branch": "feat/web-nav-ae42cf71",
   "error": null,
   "pipelineId": "standard",
@@ -23,7 +23,7 @@
     "createdAt": "2026-06-17T18:45:16.406Z"
   },
   "_journal": {
-    "historyCount": 39,
+    "historyCount": 40,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
