@@ -54,7 +54,7 @@ delivery(apps/web) ─→ (all)
 - ¹ **ext** = `next` / `react` / `drizzle-orm` / `zod` 等の外部フレームワーク。許可は **delivery**（`next`/`react`/`zod/mini`）と **db**（`drizzle-orm`）のみ。
 - ² **domain-context** = `scheduling` / `crm` / `resource` / `catalog` / `iam` / `notification` / `audit` / `reporting` のいずれか。全コンテキストが同一規則に従う。各コンテキストは自分の `src/port/` には依存してよい。
 - ³ **兄弟コンテキスト非依存**: あるコンテキストは他コンテキストを import しない（B-5）。連携は shared のイベント契約か delivery の composition 経由。
-- ⁴ db → domain は **port interface / 型のみ**参照可（Repository port を実装するため）。domain の実装・ユースケースは import しない。
+- ⁴ db → domain は **port interface / 型 / 集約ファクトリ（anti-corruption 用の行 → 集約再構成）**を参照可とする。domain のユースケース・ビジネスロジックは import しない。
 - ⁵ db のみ `drizzle-orm` を import してよい。
 - **closure rule**: 上表で ✗ の edge が actual に存在したら divergence。未知の逆流も自動的に divergence。
 
