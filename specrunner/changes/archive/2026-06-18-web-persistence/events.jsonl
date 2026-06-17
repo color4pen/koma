@@ -81,3 +81,4 @@
 {"type":"step-attempt","step":"pr-create","sessionId":null,"outcome":{"verdict":"success","findingsPath":"specrunner/changes/web-persistence/pr-create-result.md","error":null,"toolResult":null,"followUpAttempts":0},"startedAt":"2026-06-17T19:38:06.086Z","endedAt":"2026-06-17T19:38:08.382Z"}
 {"type":"lineage","step":"pr-create","ts":"2026-06-17T19:38:08.382Z","outputs":[{"path":"specrunner/changes/web-persistence/pr-create-result.md","hash":"sha256:2128390a54a4c29228836e4979f6c24f3d6f717cce57aef5804b78f6a85d6d78"}],"inputs":[{"path":"feat/web-persistence-1de291e8","hash":null}]}
 {"type":"transition","ts":"2026-06-17T19:38:08.389Z","step":"pipeline","status":"ok","message":"running → awaiting-archive: pipeline complete"}
+{"type":"transition","ts":"2026-06-17T19:39:56.244Z","step":"archive","status":"ok","message":"awaiting-archive → archived: change archived"}
