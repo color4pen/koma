@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "jobId": "1de291e8-5e17-469e-99f5-ecd5dd9071b4",
+  "createdAt": "2026-06-17T18:51:25.523Z",
+  "updatedAt": "2026-06-17T18:51:29.720Z",
+  "request": {
+    "title": "apps/web を Drizzle 永続化に配線する（driver 非依存化 ＋ 本番 client ＋ env 駆動の adapter 選択）",
+    "type": "new-feature",
+    "baseBranch": "main"
+  },
+  "repository": {
+    "owner": "color4pen",
+    "name": "koma"
+  },
+  "step": "request-review",
+  "status": "running",
+  "branch": "feat/web-persistence-1de291e8",
+  "error": null,
+  "pipelineId": "standard",
+  "_journal": {
+    "historyCount": 2,
+    "stepCounts": {}
+  }
+}
