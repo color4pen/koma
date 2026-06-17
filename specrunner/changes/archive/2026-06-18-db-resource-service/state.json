@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "bde218e1-d3bf-47cd-9b83-dc1e57eb5c7b",
   "createdAt": "2026-06-17T16:53:37.685Z",
-  "updatedAt": "2026-06-17T17:17:29.343Z",
+  "updatedAt": "2026-06-17T17:19:26.436Z",
   "request": {
     "title": "packages/db に Drizzle の ResourceRepository / ServiceRepository を実装する（pglite テスト）",
     "type": "new-feature",
@@ -13,7 +13,7 @@
     "name": "koma"
   },
   "step": "pr-create",
-  "status": "awaiting-archive",
+  "status": "archived",
   "branch": "feat/db-resource-service-bde218e1",
   "error": null,
   "pipelineId": "standard",
@@ -23,7 +23,7 @@
     "createdAt": "2026-06-17T17:17:29.323Z"
   },
   "_journal": {
-    "historyCount": 39,
+    "historyCount": 40,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
