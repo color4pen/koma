@@ -4,8 +4,10 @@ import {
   getResourceRepository,
   getServiceRepository,
 } from '@/lib/composition-root';
+import { transitionLabel } from '@/lib/booking-transitions';
 
 import BookingForm from './booking-form';
+import BookingStatusActions from './booking-status-actions';
 
 export default async function BookingsPage() {
   const bookingRepo = getBookingRepository();
@@ -51,6 +53,7 @@ export default async function BookingsPage() {
                 <th>リソース</th>
                 <th>開始日時</th>
                 <th>ステータス</th>
+                <th>操作</th>
               </tr>
             </thead>
             <tbody>
@@ -60,7 +63,10 @@ export default async function BookingsPage() {
                   <td>{serviceMap.get(booking.serviceId)?.name ?? '不明'}</td>
                   <td>{resourceMap.get(booking.resourceId)?.name ?? '不明'}</td>
                   <td>{new Date(booking.slot.start).toLocaleString('ja-JP')}</td>
-                  <td>{booking.status}</td>
+                  <td>{transitionLabel(booking.status)}</td>
+                  <td>
+                    <BookingStatusActions bookingId={booking.id} status={booking.status} />
+                  </td>
                 </tr>
               ))}
             </tbody>
