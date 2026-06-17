@@ -9,3 +9,5 @@ export { canAccommodate } from './can-accommodate.js';
 export type { BookingRepository } from './port/booking-repository.js';
 
 export { createInMemoryBookingRepository } from './in-memory-booking-repository.js';
+
+export { availableSlots } from './available-slots.js';
