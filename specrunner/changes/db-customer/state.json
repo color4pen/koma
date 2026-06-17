@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "3c97318c-276c-4316-8b98-0dd279c15cbd",
   "createdAt": "2026-06-17T13:09:25.368Z",
-  "updatedAt": "2026-06-17T13:09:28.614Z",
+  "updatedAt": "2026-06-17T13:12:58.919Z",
   "request": {
     "title": "packages/db を新設し、Drizzle で CustomerRepository を実装する（pglite テスト）",
     "type": "new-feature",
@@ -12,13 +12,15 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "request-review",
+  "step": "design",
   "status": "running",
   "branch": "feat/db-customer-3c97318c",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 2,
-    "stepCounts": {}
+    "historyCount": 5,
+    "stepCounts": {
+      "request-review": 1
+    }
   }
 }
