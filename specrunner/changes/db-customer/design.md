@@ -74,7 +74,7 @@ customers テーブル:
 
 ### D3: DrizzleCustomerRepository — port 実装 + マッピング
 
-`src/drizzle-customer-repository.ts` に配置。Drizzle の DB ハンドル（`PgliteDatabase` 型もしくは汎用 `NodePgDatabase` 相当）をコンストラクタ注入で受ける。ファクトリ関数パターン `createDrizzleCustomerRepository(db)` を採用。
+`src/drizzle-customer-repository.ts` に配置。Drizzle の DB ハンドル（現フェーズでは `PgliteDatabase` 型に固定）をコンストラクタ注入で受ける。本番 PostgreSQL 対応（汎用 DB 型への変更）は後続 request のスコープとする。ファクトリ関数パターン `createDrizzleCustomerRepository(db)` を採用。
 
 **save**: Drizzle の `onConflictDoUpdate` で id ベースの upsert。Customer → DB 行へのマッピング（`tags` を `string[]`、`customFields` を JSON オブジェクトとして直列化）。
 
@@ -96,7 +96,7 @@ customers テーブル:
 
 ### D5: pglite による契約テスト
 
-`src/drizzle-customer-repository.test.ts` に配置。テストごと（または `beforeAll`）に pglite インスタンスを作成し、Drizzle の `sql` ヘルパで CREATE TABLE を発行してスキーマをセットアップする。programmatic なスキーマ作成であり drizzle-kit 不要。
+`src/drizzle-customer-repository.test.ts` に配置。`beforeEach` で毎テスト fresh な pglite インスタンスを作成し、Drizzle の `sql` ヘルパで CREATE TABLE を発行してスキーマをセットアップする。`afterEach` で pglite を close してテスト間の状態分離を保証する（`in-memory-customer-repository.test.ts` と同じ隔離パターン）。programmatic なスキーマ作成であり drizzle-kit 不要。
 
 テストケース:
 1. `save` → `findById` で同値取得（全フィールドの等価性）

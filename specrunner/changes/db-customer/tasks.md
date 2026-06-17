@@ -74,12 +74,12 @@
 ## T-06: pglite 契約テスト
 
 - [ ] `packages/db/src/drizzle-customer-repository.test.ts` を作成する
-- [ ] テストセットアップ: `beforeAll` または `beforeEach` で pglite インスタンスを作成し、`sql` ヘルパ（Drizzle の `sql` テンプレートリテラル、または pglite の `exec`）で `customers` テーブルの CREATE TABLE を発行する
-- [ ] テスト終了時のクリーンアップ: `afterAll` で pglite インスタンスを close する
+- [ ] テストセットアップ: `beforeEach` で pglite インスタンスを新規作成し、`sql` ヘルパ（Drizzle の `sql` テンプレートリテラル、または pglite の `exec`）で `customers` テーブルの CREATE TABLE を発行する（毎テスト fresh な状態で実行する＝`in-memory-customer-repository.test.ts` と同じ隔離パターン）
+- [ ] テスト終了時のクリーンアップ: `afterEach` で pglite インスタンスを close する
 - [ ] **テスト 1: save → findById で同値取得** — Customer を save し、findById で取得した Customer の全フィールド（id / name / contact.phone / contact.email / tags / notes / customFields）が元と一致することを検証する
 - [ ] **テスト 2: 未保存 id は null** — 存在しない id で findById を呼び、`null` が返ることを検証する
 - [ ] **テスト 3: list が保存分を返す** — 複数の Customer を save し、list の結果に全件含まれることを検証する
-- [ ] **テスト 4: 同一 id 再 save で更新（upsert）** — Customer を save した後、同一 id で name 等を変更して再 save し、findById で更新後の値が取得できることを検証する
+- [ ] **テスト 4: 同一 id 再 save で更新（upsert）** — Customer を save した後、同一 id で name 等を変更して再 save し、findById で更新後の値が取得できること、かつ list の件数が 1 件のままであること（`toHaveLength(1)`）を検証する
 - [ ] **テスト 5: 行 → Customer が集約不変条件を満たす** — phone と email の両方を持つ Customer、phone のみの Customer、email のみの Customer を save → findById し、再構成された Customer の contact が不変条件（≥1 連絡先）を満たすことを検証する
 
 **Acceptance Criteria**:
