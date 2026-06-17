@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "jobId": "1e39c95b-6b83-4aa0-ba44-8cd5e2546759",
+  "createdAt": "2026-06-17T17:21:08.855Z",
+  "updatedAt": "2026-06-17T17:21:12.738Z",
+  "request": {
+    "title": "packages/db に Drizzle の BookingRepository を実装する（pglite テスト）",
+    "type": "new-feature",
+    "baseBranch": "main"
+  },
+  "repository": {
+    "owner": "color4pen",
+    "name": "koma"
+  },
+  "step": "request-review",
+  "status": "running",
+  "branch": "feat/db-booking-1e39c95b",
+  "error": null,
+  "pipelineId": "standard",
+  "_journal": {
+    "historyCount": 2,
+    "stepCounts": {}
+  }
+}
