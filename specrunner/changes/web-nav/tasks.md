@@ -2,18 +2,18 @@
 
 ## T-01: app/layout.tsx に共通ナビゲーションヘッダを追加する
 
-- [ ] `apps/web/app/layout.tsx` を編集する
-- [ ] `next/link` から `Link` を import する
-- [ ] `<body>` 内、`{children}` の前に `<header>` 要素を追加する
-- [ ] `<header>` 内に `<nav>` を配置し、以下の 5 つの `<Link>` を含める:
+- [x] `apps/web/app/layout.tsx` を編集する
+- [x] `next/link` から `Link` を import する
+- [x] `<body>` 内、`{children}` の前に `<header>` 要素を追加する
+- [x] `<header>` 内に `<nav>` を配置し、以下の 5 つの `<Link>` を含める:
   - `href="/"`、テキスト「ホーム」
   - `href="/customers"`、テキスト「顧客」
   - `href="/resources"`、テキスト「リソース」
   - `href="/services"`、テキスト「サービス」
   - `href="/bookings"`、テキスト「予約」
-- [ ] ナビゲーションに最小限のインラインスタイルを適用する（横並び・リンク間のスペーシング程度）
-- [ ] `<header>` にアプリ名「Koma」を含める（ロゴ相当、`<Link href="/">` で home に遷移）
-- [ ] `'use client'` は追加しない（server component のまま）
+- [x] ナビゲーションに最小限のインラインスタイルを適用する（横並び・リンク間のスペーシング程度）
+- [x] `<header>` にアプリ名「Koma」を含める（ロゴ相当、`<Link href="/">` で home に遷移）
+- [x] `'use client'` は追加しない（server component のまま）
 
 **Acceptance Criteria**:
 - `app/layout.tsx` に `import Link from 'next/link'` が存在する
@@ -23,8 +23,8 @@
 
 ## T-02: getDashboardCounts 純関数を作成する
 
-- [ ] `apps/web/lib/dashboard.ts` を新規作成する
-- [ ] `DashboardDeps` 型を定義する:
+- [x] `apps/web/lib/dashboard.ts` を新規作成する
+- [x] `DashboardDeps` 型を定義する:
   ```
   type DashboardDeps = {
     customerRepo: { list(): Promise<unknown[]> };
@@ -34,7 +34,7 @@
   };
   ```
   - 各プロパティは `{ list(): Promise<unknown[]> }` の構造型。具体的なドメイン型に依存しない
-- [ ] `DashboardCounts` 型を定義・export する:
+- [x] `DashboardCounts` 型を定義・export する:
   ```
   export type DashboardCounts = {
     customers: number;
@@ -43,10 +43,10 @@
     bookings: number;
   };
   ```
-- [ ] `getDashboardCounts(deps: DashboardDeps): Promise<DashboardCounts>` 関数を export する:
+- [x] `getDashboardCounts(deps: DashboardDeps): Promise<DashboardCounts>` 関数を export する:
   - `Promise.all` で 4 つの `deps.*.list()` を並行呼び出しする
   - 各配列の `.length` を対応するキーに設定して返す
-- [ ] repo への副作用（save 等）は一切行わない（純粋な読み取り専用関数）
+- [x] repo への副作用（save 等）は一切行わない（純粋な読み取り専用関数）
 
 **Acceptance Criteria**:
 - `getDashboardCounts` が export されている
@@ -56,9 +56,9 @@
 
 ## T-03: getDashboardCounts の vitest テストを作成する
 
-- [ ] `apps/web/lib/dashboard.test.ts` を新規作成する（sibling 配置）
-- [ ] `getDashboardCounts` を `@/lib/dashboard` から import する
-- [ ] in-memory repo と各ドメインファクトリを import する:
+- [x] `apps/web/lib/dashboard.test.ts` を新規作成する（sibling 配置）
+- [x] `getDashboardCounts` を `@/lib/dashboard` から import する
+- [x] in-memory repo と各ドメインファクトリを import する:
   - `createInMemoryCustomerRepository`, `createCustomer` from `@koma/crm`
   - `createInMemoryResourceRepository`, `createResource` from `@koma/resource`
   - `createInMemoryServiceRepository`, `createService` from `@koma/catalog`
@@ -66,11 +66,11 @@
   - `createContactInfo` from `@koma/crm`（Customer 生成に必要）
   - `ofMinutes`, `createMoney` from `@koma/shared`（Service 生成に必要）
   - `createId` from `@koma/shared`（エンティティ生成に必要）
-- [ ] **テストケース: 空の repo で全 0 を返す**
+- [x] **テストケース: 空の repo で全 0 を返す**
   - 4 つの in-memory repo を生成（save なし）
   - `getDashboardCounts({ customerRepo, resourceRepo, serviceRepo, bookingRepo })` を呼ぶ
   - 結果が `{ customers: 0, resources: 0, services: 0, bookings: 0 }` であることを検証
-- [ ] **テストケース: 各 repo に既知件数を save した状態で正しい件数を返す**
+- [x] **テストケース: 各 repo に既知件数を save した状態で正しい件数を返す**
   - 各 repo に既知数のエンティティを save する（例: customers 2件、resources 1件、services 3件、bookings 1件）
   - Customer は `createCustomer({ name, contact: createContactInfo({ phone }) })` で生成
   - Resource は `createResource({ name, kind, capacity })` で生成
@@ -85,11 +85,11 @@
 
 ## T-04: app/page.tsx をダッシュボード home に書き換える
 
-- [ ] `apps/web/app/page.tsx` を編集する（既存の placeholder を完全に置き換える）
-- [ ] `next/link` から `Link` を import する
-- [ ] `@/lib/composition-root` から `getCustomerRepository`, `getResourceRepository`, `getServiceRepository`, `getBookingRepository` を import する
-- [ ] `@/lib/dashboard` から `getDashboardCounts` を import する
-- [ ] `export default async function Home()` として server component を定義する:
+- [x] `apps/web/app/page.tsx` を編集する（既存の placeholder を完全に置き換える）
+- [x] `next/link` から `Link` を import する
+- [x] `@/lib/composition-root` から `getCustomerRepository`, `getResourceRepository`, `getServiceRepository`, `getBookingRepository` を import する
+- [x] `@/lib/dashboard` から `getDashboardCounts` を import する
+- [x] `export default async function Home()` として server component を定義する:
   - composition root から 4 つの repo を取得する
   - `getDashboardCounts({ customerRepo, resourceRepo, serviceRepo, bookingRepo })` で件数を取得する
   - 4 つのカードを描画する。各カードは:
@@ -97,8 +97,8 @@
     - 件数（`counts.customers` 等）
     - 対応ページへの `<Link>`（`/customers` 等）
   - カードは素の HTML（`<section>` / `<div>`）とインラインスタイルで横並びまたはグリッド状に配置
-- [ ] `'use client'` は追加しない（server component のまま）
-- [ ] ページタイトル（例: `<h1>ダッシュボード</h1>`）を含める
+- [x] `'use client'` は追加しない（server component のまま）
+- [x] ページタイトル（例: `<h1>ダッシュボード</h1>`）を含める
 
 **Acceptance Criteria**:
 - `app/page.tsx` が placeholder ではなく、4 セクションの件数とリンクを描画している
@@ -110,12 +110,12 @@
 
 ## T-05: 全体検証
 
-- [ ] `pnpm -F web run check-types` が成功することを確認する
-- [ ] `pnpm -F web run test` で全テストが pass することを確認する（dashboard.test.ts を含む既存テスト全て）
-- [ ] `pnpm -F web run build`（`next build`）が成功することを確認する
-- [ ] `pnpm -r --if-present run check-types && pnpm -r --if-present run test && pnpm -r --if-present run build` が green であることを確認する（他パッケージへの影響がない）
-- [ ] 全ページに共通ナビ（`/`・`/customers`・`/resources`・`/services`・`/bookings` への `Link`）が `layout.tsx` 経由で表示されることをコードレビューで確認する
-- [ ] `app/page.tsx` が 4 セクションの件数カード + リンクを描画していることをコードレビューで確認する
+- [x] `pnpm -F web run check-types` が成功することを確認する
+- [x] `pnpm -F web run test` で全テストが pass することを確認する（dashboard.test.ts を含む既存テスト全て）
+- [x] `pnpm -F web run build`（`next build`）が成功することを確認する
+- [x] `pnpm -r --if-present run check-types && pnpm -r --if-present run test && pnpm -r --if-present run build` が green であることを確認する（他パッケージへの影響がない）
+- [x] 全ページに共通ナビ（`/`・`/customers`・`/resources`・`/services`・`/bookings` への `Link`）が `layout.tsx` 経由で表示されることをコードレビューで確認する
+- [x] `app/page.tsx` が 4 セクションの件数カード + リンクを描画していることをコードレビューで確認する
 
 **Acceptance Criteria**:
 - 全受け入れ基準が green:
