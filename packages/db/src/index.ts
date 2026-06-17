@@ -1,4 +1,6 @@
 export { createDrizzleClient, type DrizzleClient } from './client.js';
+export { ensureSchema } from './ensure-schema.js';
+export { createPostgresClient } from './postgres-client.js';
 export { createDrizzleCustomerRepository } from './drizzle-customer-repository.js';
 export { createDrizzleResourceRepository } from './drizzle-resource-repository.js';
 export { createDrizzleServiceRepository } from './drizzle-service-repository.js';

@@ -25,7 +25,8 @@ export async function createCustomerAction(
     return { ok: false, errors: result.errors };
   }
 
-  await getCustomerRepository().save(result.customer);
+  const repo = await getCustomerRepository();
+  await repo.save(result.customer);
   revalidatePath('/customers');
   return { ok: true };
 }

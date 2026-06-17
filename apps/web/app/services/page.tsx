@@ -5,7 +5,7 @@ import { getServiceRepository } from '@/lib/composition-root';
 import ServiceForm from './service-form';
 
 export default async function ServicesPage() {
-  const repo = getServiceRepository();
+  const repo = await getServiceRepository();
   const services = await repo.list();
 
   return (

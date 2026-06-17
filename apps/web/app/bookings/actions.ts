@@ -34,11 +34,12 @@ export async function createBookingAction(
     return { ok: false, errors: parseResult.errors };
   }
 
-  const deps = {
-    serviceRepo: getServiceRepository(),
-    resourceRepo: getResourceRepository(),
-    bookingRepo: getBookingRepository(),
-  };
+  const [serviceRepo, resourceRepo, bookingRepo] = await Promise.all([
+    getServiceRepository(),
+    getResourceRepository(),
+    getBookingRepository(),
+  ]);
+  const deps = { serviceRepo, resourceRepo, bookingRepo };
 
   const useCaseResult = await createBookingUseCase(deps, {
     customerId: parseResult.input.customerId as Id<'Customer'>,
@@ -67,7 +68,7 @@ export async function transitionBookingAction(
   bookingId: string,
   toStatus: BookingStatus,
 ): Promise<ActionState> {
-  const repo = getBookingRepository();
+  const repo = await getBookingRepository();
   const booking = await repo.findById(bookingId as Id<'Booking'>);
 
   if (!booking) {

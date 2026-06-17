@@ -4,10 +4,12 @@ import { getCustomerRepository, getResourceRepository, getServiceRepository, get
 import { getDashboardCounts } from '@/lib/dashboard';
 
 export default async function Home() {
-  const customerRepo = getCustomerRepository();
-  const resourceRepo = getResourceRepository();
-  const serviceRepo = getServiceRepository();
-  const bookingRepo = getBookingRepository();
+  const [customerRepo, resourceRepo, serviceRepo, bookingRepo] = await Promise.all([
+    getCustomerRepository(),
+    getResourceRepository(),
+    getServiceRepository(),
+    getBookingRepository(),
+  ]);
 
   const counts = await getDashboardCounts({ customerRepo, resourceRepo, serviceRepo, bookingRepo });
 
