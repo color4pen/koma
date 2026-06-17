@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "ae42cf71-709a-44d4-8d51-6b72e4183a4d",
   "createdAt": "2026-06-17T18:23:06.109Z",
-  "updatedAt": "2026-06-17T18:29:08.976Z",
+  "updatedAt": "2026-06-17T18:32:20.011Z",
   "request": {
     "title": "apps/web に管理ナビゲーションとダッシュボード home を追加する",
     "type": "new-feature",
@@ -12,16 +12,17 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "spec-review",
+  "step": "test-case-gen",
   "status": "running",
   "branch": "feat/web-nav-ae42cf71",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 9,
+    "historyCount": 13,
     "stepCounts": {
       "request-review": 1,
-      "design": 1
+      "design": 1,
+      "spec-review": 1
     }
   }
 }
