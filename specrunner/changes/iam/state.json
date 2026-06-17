@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "667ce6aa-2500-45e5-8e85-7ad29410a743",
   "createdAt": "2026-06-17T19:43:50.925Z",
-  "updatedAt": "2026-06-17T19:47:05.428Z",
+  "updatedAt": "2026-06-17T19:51:19.176Z",
   "request": {
     "title": "packages/iam を新設し、User 集約・Role・Permission（認可）と UserRepository を確立する",
     "type": "new-feature",
@@ -12,15 +12,16 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "design",
+  "step": "spec-review",
   "status": "running",
   "branch": "feat/iam-667ce6aa",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 5,
+    "historyCount": 9,
     "stepCounts": {
-      "request-review": 1
+      "request-review": 1,
+      "design": 1
     }
   }
 }
