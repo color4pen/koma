@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "7ab9e76e-77dc-4938-9eb3-2dd8e7a3a6e2",
   "createdAt": "2026-06-17T16:05:21.167Z",
-  "updatedAt": "2026-06-17T16:46:17.061Z",
+  "updatedAt": "2026-06-17T16:48:45.117Z",
   "request": {
     "title": "apps/web に予約作成フローを追加する（capacity-aware 二重予約防止・コンテキスト横断 use-case）",
     "type": "new-feature",
@@ -13,7 +13,7 @@
     "name": "koma"
   },
   "step": "pr-create",
-  "status": "awaiting-archive",
+  "status": "archived",
   "branch": "feat/web-booking-7ab9e76e",
   "error": null,
   "pipelineId": "standard",
@@ -23,7 +23,7 @@
     "createdAt": "2026-06-17T16:46:17.051Z"
   },
   "_journal": {
-    "historyCount": 47,
+    "historyCount": 48,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
