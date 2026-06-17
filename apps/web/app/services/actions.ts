@@ -26,7 +26,8 @@ export async function createServiceAction(
     return { ok: false, errors: result.errors };
   }
 
-  await getServiceRepository().save(result.service);
+  const repo = await getServiceRepository();
+  await repo.save(result.service);
   revalidatePath('/services');
   return { ok: true };
 }

@@ -12,6 +12,7 @@
   "dependencies": {
     "@koma/catalog": "workspace:*",
     "@koma/crm": "workspace:*",
+    "@koma/db": "workspace:*",
     "@koma/resource": "workspace:*",
     "@koma/scheduling": "workspace:*",
     "@koma/shared": "workspace:*",

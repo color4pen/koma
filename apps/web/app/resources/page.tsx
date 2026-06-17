@@ -3,7 +3,7 @@ import { getResourceRepository } from '@/lib/composition-root';
 import ResourceForm from './resource-form';
 
 export default async function ResourcesPage() {
-  const repo = getResourceRepository();
+  const repo = await getResourceRepository();
   const resources = await repo.list();
 
   return (

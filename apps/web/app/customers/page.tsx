@@ -3,7 +3,7 @@ import { getCustomerRepository } from '@/lib/composition-root';
 import CustomerForm from './customer-form';
 
 export default async function CustomersPage() {
-  const repo = getCustomerRepository();
+  const repo = await getCustomerRepository();
   const customers = await repo.list();
 
   return (

@@ -10,10 +10,12 @@ import BookingForm from './booking-form';
 import BookingStatusActions from './booking-status-actions';
 
 export default async function BookingsPage() {
-  const bookingRepo = getBookingRepository();
-  const customerRepo = getCustomerRepository();
-  const serviceRepo = getServiceRepository();
-  const resourceRepo = getResourceRepository();
+  const [bookingRepo, customerRepo, serviceRepo, resourceRepo] = await Promise.all([
+    getBookingRepository(),
+    getCustomerRepository(),
+    getServiceRepository(),
+    getResourceRepository(),
+  ]);
 
   const [bookings, customers, services, resources] = await Promise.all([
     bookingRepo.list(),

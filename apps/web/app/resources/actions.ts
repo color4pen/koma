@@ -25,7 +25,8 @@ export async function createResourceAction(
     return { ok: false, errors: result.errors };
   }
 
-  await getResourceRepository().save(result.resource);
+  const repo = await getResourceRepository();
+  await repo.save(result.resource);
   revalidatePath('/resources');
   return { ok: true };
 }
