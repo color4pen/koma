@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "7f896c21-14fa-4772-8b1e-26227e38b49f",
   "createdAt": "2026-06-17T12:42:08.378Z",
-  "updatedAt": "2026-06-17T13:04:40.974Z",
+  "updatedAt": "2026-06-17T13:06:46.391Z",
   "request": {
     "title": "packages/scheduling に空き枠計算 availableSlots（純関数）を追加する",
     "type": "new-feature",
@@ -13,7 +13,7 @@
     "name": "koma"
   },
   "step": "pr-create",
-  "status": "awaiting-archive",
+  "status": "archived",
   "branch": "feat/available-slots-7f896c21",
   "error": null,
   "pipelineId": "standard",
@@ -23,7 +23,7 @@
     "createdAt": "2026-06-17T13:04:40.966Z"
   },
   "_journal": {
-    "historyCount": 39,
+    "historyCount": 40,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
