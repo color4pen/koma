@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "a690ba9a-0e82-447e-98ed-a512d8405eac",
   "createdAt": "2026-06-17T14:50:16.306Z",
-  "updatedAt": "2026-06-17T15:25:28.094Z",
+  "updatedAt": "2026-06-17T15:27:46.924Z",
   "request": {
     "title": "apps/web にリソースの一覧・登録 管理画面を追加する（web-customers パターン踏襲）",
     "type": "new-feature",
@@ -13,7 +13,7 @@
     "name": "koma"
   },
   "step": "pr-create",
-  "status": "awaiting-archive",
+  "status": "archived",
   "branch": "feat/web-resources-a690ba9a",
   "error": null,
   "pipelineId": "standard",
@@ -23,7 +23,7 @@
     "createdAt": "2026-06-17T15:25:28.090Z"
   },
   "_journal": {
-    "historyCount": 55,
+    "historyCount": 56,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
