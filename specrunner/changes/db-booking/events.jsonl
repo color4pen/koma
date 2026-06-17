@@ -47,3 +47,16 @@
 {"type":"transition","ts":"2026-06-17T17:42:31.227Z","step":"step-transition","status":"ok","message":"code-fixer → conformance"}
 {"type":"transition","ts":"2026-06-17T17:42:31.229Z","step":"conformance","status":"started","message":"conformance iteration 1 started"}
 {"type":"transition","ts":"2026-06-17T17:42:31.230Z","step":"conformance-started","status":"started","message":"Starting conformance step"}
+{"type":"transition","ts":"2026-06-17T17:45:22.342Z","step":"conformance-verdict","status":"ok","message":"conformance verdict: approved"}
+{"type":"step-attempt","step":"conformance","sessionId":"366febfb-ab86-48ee-81af-8217e1680322","outcome":{"verdict":"approved","findingsPath":"specrunner/changes/db-booking/conformance-result-001.md","error":null,"toolResult":{"ok":true,"approved":true,"findings":[]},"followUpAttempts":1,"transientRetryAttempts":0},"startedAt":"2026-06-17T17:42:31.237Z","endedAt":"2026-06-17T17:45:20.280Z"}
+{"type":"lineage","step":"conformance","ts":"2026-06-17T17:45:20.280Z","outputs":[{"path":"specrunner/changes/db-booking/conformance-result-002.md","hash":null}],"inputs":[{"path":"specrunner/changes/db-booking/tasks.md","hash":"sha256:ae24e6214df4d52eae26fff3b4b2c5dd87da3cd2e554c58f2d4d95cf9bf1d303"},{"path":"specrunner/changes/db-booking/design.md","hash":"sha256:1d2315df5b3cbf2b87ea96bd3d18e5983e1c1e0a46003e2fea5598e25966d664"},{"path":"specrunner/changes/db-booking/spec.md","hash":"sha256:8c847bf60640e4a3e2d2d5962d67a265c7fe37ea2ea1ead69cadc5ff4424b8e3"},{"path":"specrunner/changes/db-booking/request.md","hash":"sha256:41cfe21147fcd2e0c112b99c08bccba6418a3d328fe3f73b17a2db5c9fff91f5"}]}
+{"type":"transition","ts":"2026-06-17T17:45:22.356Z","step":"conformance","status":"ok","message":"conformance iteration 1 completed with verdict: approved"}
+{"type":"transition","ts":"2026-06-17T17:45:22.356Z","step":"step-transition","status":"ok","message":"conformance → verification"}
+{"type":"transition","ts":"2026-06-17T17:45:22.363Z","step":"verification","status":"started","message":"verification iteration 1 started"}
+{"type":"transition","ts":"2026-06-17T17:45:22.365Z","step":"step-transition","status":"ok","message":"Transitioning to verification step"}
+{"type":"transition","ts":"2026-06-17T17:45:46.117Z","step":"verification-verdict","status":"ok","message":"verification verdict: passed"}
+{"type":"step-attempt","step":"verification","sessionId":null,"outcome":{"verdict":"passed","findingsPath":"specrunner/changes/db-booking/verification-result.md","error":null,"toolResult":null,"followUpAttempts":0},"startedAt":"2026-06-17T17:45:22.366Z","endedAt":"2026-06-17T17:45:46.115Z"}
+{"type":"lineage","step":"verification","ts":"2026-06-17T17:45:46.115Z","outputs":[{"path":"specrunner/changes/db-booking/verification-result.md","hash":"sha256:785a80e2f49d4b4642f417b539c104a5ed41d55bf5892a7d1e4ef4f50f23fcc3"}],"inputs":[{"path":".","hash":null}]}
+{"type":"transition","ts":"2026-06-17T17:45:46.123Z","step":"verification","status":"ok","message":"verification iteration 1 completed with verdict: passed"}
+{"type":"transition","ts":"2026-06-17T17:45:46.123Z","step":"step-transition","status":"ok","message":"verification → adr-gen"}
+{"type":"transition","ts":"2026-06-17T17:45:46.126Z","step":"adr-gen-started","status":"started","message":"Starting adr-gen step"}
