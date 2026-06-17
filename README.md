@@ -1,5 +1,7 @@
 # Koma
 
+[![CI](https://github.com/color4pen/koma/actions/workflows/ci.yml/badge.svg)](https://github.com/color4pen/koma/actions/workflows/ci.yml)
+
 予約・顧客管理の業務システム。小規模サロンを具体例に、**業種中立な予約コア**を Turborepo モノレポ ＋ ヘキサゴナルアーキテクチャで構築している。
 
 > **Built by spec-runner** — 本リポジトリの全機能は、`request.md` を投入すると検証済み PR が返る AI パイプライン [spec-runner](https://github.com/color4pen/spec-runner) によって実装・レビュー・マージされた。各機能の spec → 実装 → レビュー → ADR → PR の全履歴は [`specrunner/changes/archive/`](specrunner/changes/archive/) に残っている。
