@@ -48,12 +48,13 @@
 
 ### D3: `capacity` の文字列→数値変換はカスタム前処理で行う
 
-`zod/v4/mini` では `z.coerce` API の利用可否が不確実なため（request-review Finding #2）、`parseInt` + 数値型チェックのカスタムロジックで文字列→整数変換を行い、変換後の値に対して `>= 1` かつ `Number.isInteger` を検証する。
+`zod/v4/mini` では `z.coerce` API の利用可否が不確実なため（request-review Finding #2）、`Number()` + `Number.isInteger` チェックのカスタムロジックで文字列→整数変換を行う。具体的には `const n = Number(capStr); if (isNaN(n) || !Number.isInteger(n) || n < 1)` でエラーを返す。
 
-**Rationale**: `zod/v4/mini` は軽量ビルドであり、`z.coerce` が使えない可能性がある。カスタム前処理なら確実に動作し、既存の `parse-customer-input.ts` とも整合する（既存コードも `z.coerce` を使っていない）。
+**Rationale**: `parseInt` は小数文字列 `"1.5"` を `1` に丸めてしまい、`Number.isInteger(1) === true` のため spec が要求する「小数文字列 → errors.capacity」を実現できない。`Number("1.5")` は `1.5` を返し、`Number.isInteger(1.5) === false` となるため小数を正しく検出できる。`zod/v4/mini` は軽量ビルドであり `z.coerce` が使えない可能性があるため、カスタム前処理が確実。
 
 **Alternatives considered**:
 - `z.coerce.number()` を使う → リスクあり。mini ビルドでの利用可否が未検証。
+- `parseInt` を使う → 却下。`parseInt("1.5") === 1` となり小数エラー要件を満たせない。
 
 ### D4: `kind` はフォーム上の自由文字列入力
 
@@ -73,7 +74,7 @@
 
 ## Risks / Trade-offs
 
-- **[Risk] `zod/v4/mini` の API 互換性** → Mitigation: `z.coerce` を避け、カスタム前処理（`parseInt` + 型チェック）で変換する（D3）。
+- **[Risk] `zod/v4/mini` の API 互換性** → Mitigation: `z.coerce` を避け、カスタム前処理（`Number()` + `Number.isInteger` チェック）で変換する（D3）。
 - **[Risk] in-memory repository はプロセス再起動で消失** → Mitigation: 本スライスはデモ用途。Drizzle 永続化は後続スライスで対応予定。composition root の 1 箇所を差し替えるだけで移行可能（D5）。
 
 ## Open Questions

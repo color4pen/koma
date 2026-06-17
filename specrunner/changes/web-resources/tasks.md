@@ -33,7 +33,7 @@
 - [ ] `parseResourceInput(raw: unknown): ParseResourceInputResult` 関数を実装する:
   1. `resourceSchema.safeParse(raw)` でバリデーション
   2. 失敗時: `parse-customer-input.ts` と同じフィールド別エラー集約ロジックで `{ ok: false, errors }` を返す
-  3. 成功後、`capacity` 文字列を `parseInt` で整数変換。`capacity` が未指定または空文字の場合は `undefined`（`createResource` のデフォルト 1 に委ねる）。変換結果が `NaN`、整数でない、または `< 1` の場合は `{ ok: false, errors: { capacity: [...] } }` を返す
+  3. 成功後、`capacity` 文字列を `Number()` で数値変換。`capacity` が未指定または空文字の場合は `undefined`（`createResource` のデフォルト 1 に委ねる）。変換結果が `NaN`、`Number.isInteger` で false（小数を含む）、または `< 1` の場合は `{ ok: false, errors: { capacity: [...] } }` を返す（例: `const n = Number(capStr); if (isNaN(n) || !Number.isInteger(n) || n < 1) { return error }`）
   4. `createResource({ name, kind, capacity })` を `try/catch` で呼び出し、成功時は `{ ok: true, resource }` を返す。catch 時は `{ ok: false, errors: { _form: [message] } }` を返す
 
 **Acceptance Criteria**:
