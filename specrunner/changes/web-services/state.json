@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "e797f3c3-d908-4a7e-88ea-dbbc9d4b0ae5",
   "createdAt": "2026-06-17T15:29:16.816Z",
-  "updatedAt": "2026-06-17T15:58:02.187Z",
+  "updatedAt": "2026-06-17T16:00:33.635Z",
   "request": {
     "title": "apps/web にサービス（メニュー）の一覧・登録 管理画面を追加する（web-customers パターン踏襲）",
     "type": "new-feature",
@@ -12,13 +12,13 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "conformance",
+  "step": "adr-gen",
   "status": "running",
   "branch": "feat/web-services-e797f3c3",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 30,
+    "historyCount": 34,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
@@ -26,7 +26,8 @@
       "test-case-gen": 1,
       "implementer": 1,
       "verification": 1,
-      "code-review": 1
+      "code-review": 1,
+      "conformance": 1
     }
   }
 }
