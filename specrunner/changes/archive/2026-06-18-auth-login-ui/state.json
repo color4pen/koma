@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "50adcf18-733f-445d-988a-ccb33be78c57",
   "createdAt": "2026-06-18T01:39:36.298Z",
-  "updatedAt": "2026-06-18T02:20:59.238Z",
+  "updatedAt": "2026-06-18T02:22:55.286Z",
   "request": {
     "title": "apps/web に認証の上物（ログイン画面・ログイン/ログアウト server action・セッション Cookie I/O・ミドルウェアによるルート保護・ナビのログアウト導線）を確立する",
     "type": "new-feature",
@@ -13,7 +13,7 @@
     "name": "koma"
   },
   "step": "pr-create",
-  "status": "awaiting-archive",
+  "status": "archived",
   "branch": "feat/auth-login-ui-50adcf18",
   "error": null,
   "pipelineId": "standard",
@@ -23,7 +23,7 @@
     "createdAt": "2026-06-18T02:20:59.234Z"
   },
   "_journal": {
-    "historyCount": 47,
+    "historyCount": 48,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
