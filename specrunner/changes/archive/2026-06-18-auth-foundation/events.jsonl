@@ -69,3 +69,4 @@
 {"type":"step-attempt","step":"pr-create","sessionId":null,"outcome":{"verdict":"success","findingsPath":"specrunner/changes/auth-foundation/pr-create-result.md","error":null,"toolResult":null,"followUpAttempts":0},"startedAt":"2026-06-18T01:34:41.030Z","endedAt":"2026-06-18T01:34:42.719Z"}
 {"type":"lineage","step":"pr-create","ts":"2026-06-18T01:34:42.719Z","outputs":[{"path":"specrunner/changes/auth-foundation/pr-create-result.md","hash":"sha256:84b58b92b6174867884d1aad2d9e34be16ac4797096e58bf0d3023380ac393d9"}],"inputs":[{"path":"feat/auth-foundation-14f32e92","hash":null}]}
 {"type":"transition","ts":"2026-06-18T01:34:42.724Z","step":"pipeline","status":"ok","message":"running → awaiting-archive: pipeline complete"}
+{"type":"transition","ts":"2026-06-18T01:36:36.739Z","step":"archive","status":"ok","message":"awaiting-archive → archived: change archived"}

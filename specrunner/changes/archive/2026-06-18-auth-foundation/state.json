@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "14f32e92-4e0c-467e-8361-f1d3fab9bcfd",
   "createdAt": "2026-06-18T00:59:52.994Z",
-  "updatedAt": "2026-06-18T01:34:42.724Z",
+  "updatedAt": "2026-06-18T01:36:36.739Z",
   "request": {
     "title": "apps/web に認証の土台（パスワードハッシュ・署名付きセッショントークン・User リポジトリ配線 ＋ owner ブートストラップ・認証 use-case）を確立する",
     "type": "new-feature",
@@ -13,7 +13,7 @@
     "name": "koma"
   },
   "step": "pr-create",
-  "status": "awaiting-archive",
+  "status": "archived",
   "branch": "feat/auth-foundation-14f32e92",
   "error": null,
   "pipelineId": "standard",
@@ -23,7 +23,7 @@
     "createdAt": "2026-06-18T01:34:42.719Z"
   },
   "_journal": {
-    "historyCount": 47,
+    "historyCount": 48,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
