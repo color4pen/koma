@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "50adcf18-733f-445d-988a-ccb33be78c57",
   "createdAt": "2026-06-18T01:39:36.298Z",
-  "updatedAt": "2026-06-18T02:02:28.642Z",
+  "updatedAt": "2026-06-18T02:10:30.735Z",
   "request": {
     "title": "apps/web に認証の上物（ログイン画面・ログイン/ログアウト server action・セッション Cookie I/O・ミドルウェアによるルート保護・ナビのログアウト導線）を確立する",
     "type": "new-feature",
@@ -12,19 +12,21 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "implementer",
+  "step": "code-review",
   "status": "running",
   "branch": "feat/auth-login-ui-50adcf18",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 24,
+    "historyCount": 33,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
       "spec-review": 2,
       "spec-fixer": 1,
-      "test-case-gen": 1
+      "test-case-gen": 1,
+      "implementer": 1,
+      "verification": 1
     }
   }
 }
