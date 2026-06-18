@@ -17,3 +17,9 @@
 {"type":"transition","ts":"2026-06-18T01:52:23.005Z","step":"spec-review","status":"warning","message":"spec-review iteration 1 completed with verdict: needs-fix"}
 {"type":"transition","ts":"2026-06-18T01:52:23.006Z","step":"step-transition","status":"ok","message":"spec-review → spec-fixer"}
 {"type":"transition","ts":"2026-06-18T01:52:23.007Z","step":"spec-fixer-started","status":"started","message":"Starting spec-fixer step"}
+{"type":"transition","ts":"2026-06-18T01:55:12.078Z","step":"spec-fixer-verdict","status":"ok","message":"spec-fixer verdict: approved"}
+{"type":"step-attempt","step":"spec-fixer","sessionId":"96ce773a-a771-4578-a831-0817d1ae6e93","outcome":{"verdict":"approved","findingsPath":null,"error":null,"toolResult":{"ok":true,"status":"success"},"followUpAttempts":1,"transientRetryAttempts":0},"startedAt":"2026-06-18T01:52:23.013Z","endedAt":"2026-06-18T01:55:10.823Z"}
+{"type":"lineage","step":"spec-fixer","ts":"2026-06-18T01:55:10.823Z","outputs":[{"path":"specrunner/changes/auth-login-ui/design.md","hash":"sha256:379ab11dc64712d3a5745bfa1dcba45f9f40fcf88f99a281d16f6a0b11058ad9"},{"path":"specrunner/changes/auth-login-ui/spec.md","hash":"sha256:db053088066c3700673fd9f93bf458b34ad4229cf67fd3e73a7c75c6fa24b074"}],"inputs":[{"path":"specrunner/changes/auth-login-ui/spec-review-result-001.md","hash":"sha256:790ace12cf1b07c62ac64bb591efc1adae1f7fb15723c7ee41a602ab474e49a0"}]}
+{"type":"transition","ts":"2026-06-18T01:55:12.081Z","step":"step-transition","status":"ok","message":"spec-review complete → spec-review (iter 2)"}
+{"type":"transition","ts":"2026-06-18T01:55:12.081Z","step":"spec-review","status":"started","message":"spec-review iteration 2 started"}
+{"type":"transition","ts":"2026-06-18T01:55:12.082Z","step":"spec-review-started","status":"started","message":"Starting spec-review step"}
