@@ -2,7 +2,7 @@
   "version": 2,
   "jobId": "14f32e92-4e0c-467e-8361-f1d3fab9bcfd",
   "createdAt": "2026-06-18T00:59:52.994Z",
-  "updatedAt": "2026-06-18T01:13:14.978Z",
+  "updatedAt": "2026-06-18T01:15:53.977Z",
   "request": {
     "title": "apps/web に認証の土台（パスワードハッシュ・署名付きセッショントークン・User リポジトリ配線 ＋ owner ブートストラップ・認証 use-case）を確立する",
     "type": "new-feature",
@@ -12,17 +12,18 @@
     "owner": "color4pen",
     "name": "koma"
   },
-  "step": "test-case-gen",
+  "step": "implementer",
   "status": "running",
   "branch": "feat/auth-foundation-14f32e92",
   "error": null,
   "pipelineId": "standard",
   "_journal": {
-    "historyCount": 13,
+    "historyCount": 16,
     "stepCounts": {
       "request-review": 1,
       "design": 1,
-      "spec-review": 1
+      "spec-review": 1,
+      "test-case-gen": 1
     }
   }
 }

@@ -29,6 +29,9 @@ importers:
       '@koma/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@koma/iam':
+        specifier: workspace:*
+        version: link:../../packages/iam
       '@koma/resource':
         specifier: workspace:*
         version: link:../../packages/resource
