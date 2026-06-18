@@ -114,7 +114,8 @@
   - `parseLoginInput({ email, password })` で検証。失敗時は `{ ok: false, errors }` を返す
   - `authenticate(await getUserRepository(), email, password)` で認証する
   - 認証失敗: `{ ok: false, message: 'メールアドレスまたはパスワードが正しくありません' }` を返す
-  - 認証成功: `setSessionCookie({ userId: user.id, role: user.role })` を呼び、`redirect(next || '/')` する
+  - `next` パラメータは同一オリジン相対パスのみ許可する: `/` で始まり `//` で始まらない文字列のみ有効とし、条件を満たさない場合は `'/'` にフォールバックする（open redirect 防止 — CWE-601）。具体的には `const safeNext = typeof next === 'string' && next.startsWith('/') && !next.startsWith('//') ? next : '/'` のように判定する
+  - 認証成功: `setSessionCookie({ userId: user.id, role: user.role })` を呼び、`redirect(safeNext)` する
 - [ ] `logoutAction(): Promise<void>` を実装する
   - `clearSessionCookie()` を呼び、`redirect('/login')` する
 
@@ -124,6 +125,7 @@
 - 認証失敗メッセージがメール不在とパスワード誤りで同一
 - `redirect` は `next/navigation` から import
 - 認証成功時に `setSessionCookie` を呼んでいる
+- `next` が `/` 以外の文字で始まる場合や `//` で始まる場合は `/` にフォールバックしている（open redirect 防止）
 - ログアウトで `clearSessionCookie` → `redirect('/login')`
 
 ---
@@ -155,6 +157,7 @@
 - [ ] `pathname` の判定のため、ログイン画面かどうかを判定する方法を検討する（`readSession` が `null` なら `/login` と推定可能 — middleware が保護しているため、認証なしで layout に到達するのは public path のみ）
 - [ ] セッションが `null` の場合（`/login` ページ）: 業務ナビリンクを非表示にする（Koma ロゴのみ表示）
 - [ ] セッションがある場合: 業務ナビ＋ログアウト form（`logoutAction` を呼ぶ button）を表示する
+- [ ] ユーザー識別（email）の取得: `resolveAuthConfig(process.env).adminEmail` を使用する。`SessionPayload` には email フィールドがないため DB 参照は行わず、設定値（環境変数 `ADMIN_EMAIL` 経由）をそのまま表示する
 - [ ] ログアウト form は `<form action={logoutAction}>` で Server Action を直接呼ぶ
 
 **Acceptance Criteria**:
@@ -163,6 +166,7 @@
 - `logoutAction` を import して form の action に設定している
 - セッション `null` 時に業務リンクが表示されない
 - セッションあり時にログアウトボタンが表示される
+- セッションあり時に `resolveAuthConfig(process.env).adminEmail` の値をナビに表示している
 
 ---
 

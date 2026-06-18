@@ -94,6 +94,7 @@ middleware の `config.matcher` は Next.js 内部の静的アセット（`_next
 
 - **[Risk] セッション TTL 固定で Remember me なし** → 7 日経過で強制ログアウト。単一オーナー利用なので現時点で許容。スライディング有効期限は後続で対応可能。
 - **[Risk] middleware で DB を引かないため revocation が即時反映されない** → パスワード変更・アカウント無効化は `exp` まで既存セッションが有効。短 TTL（7 日）で緩和。即時 revocation が必要になった場合は deny-list を検討。
+- **[Risk] タイミング差によるメール存在確認（user enumeration）** → `authenticate()` はメールアドレスが存在しない場合にパスワードハッシュ検証をスキップするため、応答時間の計測によってアカウントの存在が推測できる。本スライスのスコープ外（Non-Goals: タイミング均一化）として許容する。**後続スライス対応事項**: ダミーハッシュ値への `bcrypt.compare`（または同等の処理）を常時実行してタイミングを均一化する。
 - **[Trade-off] E2E テストなし** → middleware・cookie I/O・redirect の統合動作は手動確認に依存。本スライスのスコープ外として割り切り、後続で Playwright 基盤を追加する。
 
 ## Open Questions
