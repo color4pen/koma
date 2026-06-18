@@ -29,3 +29,8 @@
 {"type":"transition","ts":"2026-06-18T01:59:44.045Z","step":"spec-review","status":"ok","message":"spec-review iteration 2 completed with verdict: approved"}
 {"type":"transition","ts":"2026-06-18T01:59:44.045Z","step":"step-transition","status":"ok","message":"spec-review → test-case-gen"}
 {"type":"transition","ts":"2026-06-18T01:59:44.047Z","step":"test-case-gen-started","status":"started","message":"Starting test-case-gen step"}
+{"type":"transition","ts":"2026-06-18T02:02:28.634Z","step":"test-case-gen-verdict","status":"ok","message":"test-case-gen verdict: success"}
+{"type":"step-attempt","step":"test-case-gen","sessionId":"ffd118d0-861d-4824-8bcc-4fc298786f81","outcome":{"verdict":"success","findingsPath":null,"error":null,"toolResult":{"ok":true,"status":"success"},"followUpAttempts":1,"transientRetryAttempts":0},"startedAt":"2026-06-18T01:59:44.057Z","endedAt":"2026-06-18T02:02:26.830Z"}
+{"type":"lineage","step":"test-case-gen","ts":"2026-06-18T02:02:26.830Z","outputs":[{"path":"specrunner/changes/auth-login-ui/test-cases.md","hash":"sha256:d2cb14ad5ca086ccc685481106e4c05b6c2afb7be0daa287089b2236b982375e"}],"inputs":[{"path":"specrunner/changes/auth-login-ui/design.md","hash":"sha256:379ab11dc64712d3a5745bfa1dcba45f9f40fcf88f99a281d16f6a0b11058ad9"},{"path":"specrunner/changes/auth-login-ui/tasks.md","hash":"sha256:1236bf2dab515f2923d8757c797b51a4969fd7b8491b056622afdcf76e1221e2"}]}
+{"type":"transition","ts":"2026-06-18T02:02:28.640Z","step":"step-transition","status":"ok","message":"spec-review complete → implementer (iter 2)"}
+{"type":"transition","ts":"2026-06-18T02:02:28.642Z","step":"implementer-started","status":"started","message":"Starting implementer step"}
